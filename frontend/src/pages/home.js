@@ -1,6 +1,20 @@
+import Button from '../components/modules/Button/Button';
+import LinkButton from '../components/modules/LinkButton/LinkButton';
+import InputBoxBase from '../components/atoms/InputBoxBase/InputBoxBase';
+import InputBoxWithLabel from '../components/modules/InputBox/InputBoxWithLabel';
+import InputBoxWithCount from '../components/modules/InputBox/InputBoxWithCount';
 export default function Home() {
 
   return (
-    <p>Home</p>
+    <>
+      <Button label='ボタン' state='active' handleClick={() => console.log('clicked1')} />
+      <Button label='ボタン' state='disabled' />
+      <LinkButton label='リンクボタン' state='active' handleClick={() => console.log('clicked2')} />
+      <LinkButton label='リンクボタン' state='disabled' />
+      <InputBoxBase label='ラベル' input_type='text' state='active' placeholder='プレースホルダー'/>
+      <InputBoxBase label='ラベル' input_type='text' state='error'placeholder='プレースホルダー' />
+      <InputBoxWithLabel label='ラベル' input_type='password' state='active'placeholder='ラベル付き' />
+      <InputBoxWithCount label='ラベル' input_type='text' state='active' placeholder='プレースホルダー' max_char='16'/>
+    </>
   );
 }

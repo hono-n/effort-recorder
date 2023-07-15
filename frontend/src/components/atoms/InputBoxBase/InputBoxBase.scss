@@ -1,0 +1,32 @@
+@import '../../../assets/styles/_global-style.scss';
+
+.input-box {
+  display: block;
+  box-sizing: border-box;
+  height: 36px;
+  width: 320px;
+  border-radius: 6px;
+  padding: 0px 8px;
+  border: none;
+  @include text-regular;
+
+  &::placeholder {
+    @include text-placeholder;
+  }
+
+  &--active {
+    outline: 1.5px solid $primary-color-80;
+
+    &:focus {
+      outline: 2px solid $primary-color-70;
+    }
+  }
+
+  &--error {
+    outline: 1.5px solid $error-color-60;
+
+    &:focus {
+      outline: 2px solid $error-color-60;
+    }
+  }
+}
