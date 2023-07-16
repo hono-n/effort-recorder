@@ -1,11 +1,11 @@
-@import '../../../assets/styles/_global-style.scss';
+@use '../../../assets/styles/_global-style.scss' as *;
 
 .input-box {
   display: block;
   box-sizing: border-box;
   height: 36px;
   width: 320px;
-  border-radius: 6px;
+  border-radius: 3px;
   padding: 0px 8px;
   border: none;
   @include text-regular;

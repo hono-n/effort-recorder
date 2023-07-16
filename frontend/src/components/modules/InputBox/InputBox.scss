@@ -1,4 +1,4 @@
-@import '../../../assets/styles/_global-style.scss';
+@use '../../../assets/styles/_global-style.scss' as *;
 
 @mixin input--label {
   display: block;
