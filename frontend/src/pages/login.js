@@ -1,6 +1,7 @@
-export default function Login() {
+import LoginTemplate from "../components/templates/LoginTemplate/LoginTemplate";
 
+export default function Login() {
   return (
-    <p>Login</p>
+    <LoginTemplate />
   );
 }

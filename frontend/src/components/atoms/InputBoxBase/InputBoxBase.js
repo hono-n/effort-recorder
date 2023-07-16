@@ -4,9 +4,9 @@ import cn from "classnames";
 import './InputBoxBase.scss';
 
 export default function InputBox({
-  input_type,
-  state,
-  placeholder,
+  input_type='text',
+  state='active',
+  placeholder='プレースホルダー',
   style,
   handleCount,
   maxLength

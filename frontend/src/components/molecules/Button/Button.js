@@ -4,8 +4,9 @@ import cn from "classnames";
 import './Button.scss';
 
 export default function Button({
-  label,
-  state,
+  label='ラベル',
+  state='active',
+  className,
   handleClick,
   style
 }) {
@@ -17,7 +18,7 @@ export default function Button({
 
   return (
     <button
-      className={cn(buttonClass)}
+      className={cn(buttonClass, className)}
       onClick={handleClick}
       style={style}
     >

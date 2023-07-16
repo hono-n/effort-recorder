@@ -1,8 +1,8 @@
-import Button from '../components/modules/Button/Button';
-import LinkButton from '../components/modules/LinkButton/LinkButton';
+import Button from '../components/molecules/Button/Button';
+import LinkButton from '../components/molecules/LinkButton/LinkButton';
 import InputBoxBase from '../components/atoms/InputBoxBase/InputBoxBase';
-import InputBoxWithLabel from '../components/modules/InputBox/InputBoxWithLabel';
-import InputBoxWithCount from '../components/modules/InputBox/InputBoxWithCount';
+import InputBoxWithLabel from '../components/molecules/InputBox/InputBoxWithLabel';
+import InputBoxWithCount from '../components/molecules/InputBox/InputBoxWithCount';
 export default function Home() {
 
   return (

@@ -4,7 +4,7 @@ import './InputBox.scss';
 import InputBoxBase from '../../atoms/InputBoxBase/InputBoxBase'
 
 export default function InputBoxWithCount({
-  label,
+  label='ラベル',
   max_char,
   ...rest
 }) {
