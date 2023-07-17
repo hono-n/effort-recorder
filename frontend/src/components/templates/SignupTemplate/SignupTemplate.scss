@@ -1,6 +1,6 @@
 @use '../../../assets/styles/_global-style.scss' as *;
 
-.login {
+.signup {
   display: flex;
   flex-direction: row;
 
@@ -19,11 +19,7 @@
     margin-top: 24px;
   }
 
-  &__login-button {
+  &__signup-button {
     margin-top: 48px;
-  }
-
-  &__create-new-button {
-    margin-top: 56px;
   }
 }

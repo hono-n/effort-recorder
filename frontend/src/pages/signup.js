@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SignupTemplate from '../components/templates/SignupTemplate/SignupTemplate';
 
 export default function Signup() {
 
@@ -33,7 +34,7 @@ export default function Signup() {
 
   return (
     <div>
-      <button onClick={addUser}>ボタン</button>
+    <SignupTemplate />
     </div>
   );
 }
