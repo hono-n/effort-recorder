@@ -8,7 +8,7 @@ export default function Signup() {
 
   const data = {
     "user": {
-      "user_name": "usertestapi6",
+      "user_name": "usertestapi2",
       "password": "abc12345",
       "password_confirmation": "abc12345"
     }
