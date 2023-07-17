@@ -1,18 +1,31 @@
 class Api::UsersController < ApplicationController
+  # to be removed, just for testing
   def index
     @users = User.all
-    render json: @users
+    render json: { status: 200, users: @users }
   end
 
   def show; end
 
-  def new; end
+  def create
+    @user = User.new(user_params)
 
-  def edit; end
-
-  def create; end
+    if @user.save
+      # login!
+      render json: { status: :created, user: @user }
+    else
+      render json: { status: 500, errors: ['failed to create user'] }
+    end
+  end
 
   def update; end
 
   def destroy; end
+
+  private
+
+  # ストロングパラメータ
+  def user_params
+    params.require(:user).permit(:user_name, :password, :password_confirmation)
+  end
 end

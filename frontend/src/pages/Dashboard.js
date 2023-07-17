@@ -3,7 +3,7 @@ import LinkButton from '../components/molecules/LinkButton/LinkButton';
 import InputBoxBase from '../components/atoms/InputBoxBase/InputBoxBase';
 import InputBoxWithLabel from '../components/molecules/InputBox/InputBoxWithLabel';
 import InputBoxWithCount from '../components/molecules/InputBox/InputBoxWithCount';
-export default function Home() {
+export default function Dashboard() {
 
   return (
     <>
