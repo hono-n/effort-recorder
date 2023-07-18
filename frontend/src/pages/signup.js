@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import SignupTemplate from '../components/templates/SignupTemplate/SignupTemplate';
 
-export default function Signup() {
+export default function Signup({ authProps }) {
+
+  const { loginStatus, handleLogin } = authProps;
 
   const [newAccountData, setNewAccountData] = useState({
     userName: '',
@@ -12,8 +15,9 @@ export default function Signup() {
   });
   const handleFormValue = { newAccountData, setNewAccountData }
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
 
+  const handleSubmit = (event) => {
     axios.post('http://localhost:3001/api/users',
       {
         user: {
@@ -24,7 +28,11 @@ export default function Signup() {
       },
       { withCredentials: true }
     ).then(response => {
-      console.log('success', response);
+      console.log(response.data);
+      if (response.data.status === 'created') {
+        handleLogin(response.data.user.user_name);
+        navigate("/dashboard");
+      }
     }).catch(error => {
       console.log('error', error)
     });
@@ -32,11 +40,9 @@ export default function Signup() {
   }
 
   return (
-    <div>
       <SignupTemplate
         handleFormValue={handleFormValue}
         handleSubmit={handleSubmit}
       />
-    </div>
   );
 }
