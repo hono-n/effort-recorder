@@ -4,11 +4,12 @@ import cn from "classnames";
 import './InputBoxBase.scss';
 
 export default function InputBox({
-  input_type='text',
-  state='active',
-  placeholder='プレースホルダー',
+  input_type = 'text',
+  state = 'active',
+  placeholder = 'プレースホルダー',
   style,
-  handleCount,
+  getCount,
+  handleInputValue,
   maxLength
 }) {
   const InputBoxClass = {
@@ -18,11 +19,16 @@ export default function InputBox({
   }
 
   const handleInputChange = (event) => {
-    const newCount = event.target.value.length;
-    handleCount(newCount)
+    if (getCount) {
+      const newCount = event.target.value.length;
+      getCount(newCount);
+    }
+    if (handleInputValue) {
+      const { callback, dataName } = handleInputValue;
+      const newValue = event.target.value;
+      callback(dataName, newValue);
+    }
   }
-
-  const onChangeProp = handleCount ? handleInputChange : null;
 
   return (
     <div>
@@ -31,7 +37,7 @@ export default function InputBox({
         style={style}
         className={cn(InputBoxClass)}
         placeholder={placeholder}
-        onChange={onChangeProp}
+        onChange={handleInputChange}
         maxLength={maxLength}
       />
     </div>

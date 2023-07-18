@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import cn from "classnames";
 
 import './InputBox.scss';
 import InputBoxBase from '../../atoms/InputBoxBase/InputBoxBase'
 
 export default function InputBoxWithCount({
   label='ラベル',
+  className,
   max_char,
   ...rest
 }) {
@@ -15,7 +17,7 @@ export default function InputBoxWithCount({
   }
 
   return (
-    <div className="input-box-with-count">
+    <div className={cn('input-box-with-count', className)}>
       <div className="input-box-with-count__container">
         <div className="input-box-with-count__decorator">
           <label className="input-box-with-count__label">{label}</label>
@@ -24,7 +26,7 @@ export default function InputBoxWithCount({
             <p>/{max_char}</p>
           </div>
         </div>
-        <InputBoxBase handleCount={handleCount} maxLength={max_char} {...rest} />
+        <InputBoxBase getCount={handleCount} maxLength={max_char} {...rest} />
       </div>
     </div>
   )

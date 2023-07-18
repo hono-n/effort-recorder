@@ -4,8 +4,9 @@ import cn from "classnames";
 import './LinkButton.scss';
 
 export default function LinkButton({
-  label='ラベル',
-  state='active',
+  label = 'ラベル',
+  state = 'active',
+  type = 'button',
   className,
   handleClick,
   style
@@ -21,6 +22,7 @@ export default function LinkButton({
       className={cn(linkButtonClass, className)}
       onClick={handleClick}
       style={style}
+      type={type}
     >
       {label}
     </button>
