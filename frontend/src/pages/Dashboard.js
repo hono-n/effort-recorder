@@ -1,16 +1,18 @@
+import { useAuth } from '../contexts/AuthContext';
+
 import Button from '../components/molecules/Button/Button';
 import LinkButton from '../components/molecules/LinkButton/LinkButton';
 import InputBoxBase from '../components/atoms/InputBoxBase/InputBoxBase';
 import InputBoxWithLabel from '../components/molecules/InputBox/InputBoxWithLabel';
 import InputBoxWithCount from '../components/molecules/InputBox/InputBoxWithCount';
 
-export default function Dashboard({ authProps }) {
+export default function Dashboard() {
 
-  const { loginStatus, handleLogin } = authProps;
+  const auth = useAuth();
 
   return (
     <>
-      <p>{loginStatus?"ログイン中": "未ログイン"}</p>ï
+      <p>{auth.user}</p>
       <Button label='ボタン' state='active' handleClick={() => console.log('clicked1')} />
       <Button label='ボタン' state='disabled' />
       <LinkButton label='リンクボタン' state='active' handleClick={() => console.log('clicked2')} />

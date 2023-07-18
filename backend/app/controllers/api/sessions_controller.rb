@@ -1,8 +1,8 @@
 class Api::SessionsController < ApplicationController
   def create
-    user = User.find_by(user_name: session_params[:user_name])
-    if user&.authenticate(session_params[:password])
-      session[:user_id] = user.id
+    @user = User.find_by(user_name: session_params[:user_name])
+    if @user&.authenticate(session_params[:password])
+      login!
       render json: { logged_in: true, user: @user }
     else
       render json: { status: 401, errors: ['認証に失敗しました'] }

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function Home({ loginStatus }) {
-  return (
-    <></>
-  );
+export default function Home() {
+  const navigate = useNavigate();
+  return navigate('/dashboard');
 }

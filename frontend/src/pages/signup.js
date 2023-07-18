@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../contexts/AuthContext';
 
 import SignupTemplate from '../components/templates/SignupTemplate/SignupTemplate';
 
-export default function Signup({ authProps }) {
-
-  const { loginStatus, handleLogin } = authProps;
+export default function Signup() {
+  const auth = useAuth();
+  const navigate = useNavigate();
 
   const [newAccountData, setNewAccountData] = useState({
     userName: '',
@@ -14,8 +15,6 @@ export default function Signup({ authProps }) {
     passwordConfirmation: ''
   });
   const handleFormValue = { newAccountData, setNewAccountData }
-
-  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     axios.post('http://localhost:3001/api/users',
@@ -28,10 +27,8 @@ export default function Signup({ authProps }) {
       },
       { withCredentials: true }
     ).then(response => {
-      console.log(response.data);
       if (response.data.status === 'created') {
-        handleLogin(response.data.user.user_name);
-        navigate("/dashboard");
+        auth.login(response.data.user.user_name, () => { navigate("/dashboard") });
       }
     }).catch(error => {
       console.log('error', error)
@@ -40,9 +37,9 @@ export default function Signup({ authProps }) {
   }
 
   return (
-      <SignupTemplate
-        handleFormValue={handleFormValue}
-        handleSubmit={handleSubmit}
-      />
+    <SignupTemplate
+      handleFormValue={handleFormValue}
+      handleSubmit={handleSubmit}
+    />
   );
 }

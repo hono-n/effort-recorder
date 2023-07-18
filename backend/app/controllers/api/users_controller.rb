@@ -1,10 +1,4 @@
 class Api::UsersController < ApplicationController
-  # to be removed, just for testing
-  def index
-    @users = User.all
-    render json: { status: 200, users: @users }
-  end
-
   def show; end
 
   def create

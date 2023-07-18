@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace :api do
-    resources :users, only: %i[index show create update destroy]
+    resources :users, only: %i[show create update destroy]
     resource :session, only: %i[create destroy]
   end
 end
