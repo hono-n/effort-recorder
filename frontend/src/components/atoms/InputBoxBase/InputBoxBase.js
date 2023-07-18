@@ -8,7 +8,7 @@ export default function InputBox({
   state = 'active',
   placeholder = 'プレースホルダー',
   style,
-  getCount,
+  handleCount,
   handleInputValue,
   maxLength
 }) {
@@ -19,9 +19,9 @@ export default function InputBox({
   }
 
   const handleInputChange = (event) => {
-    if (getCount) {
+    if (handleCount) {
       const newCount = event.target.value.length;
-      getCount(newCount);
+      handleCount(newCount);
     }
     if (handleInputValue) {
       const { callback, dataName } = handleInputValue;

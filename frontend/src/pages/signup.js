@@ -13,8 +13,22 @@ export default function Signup() {
   const handleFormValue = { newAccountData, setNewAccountData }
 
   const handleSubmit = (event) => {
+
+    axios.post('http://localhost:3001/api/users',
+      {
+        user: {
+          user_name: newAccountData.userName,
+          password: newAccountData.password,
+          password_confirmation: newAccountData.passwordConfirmation
+        }
+      },
+      { withCredentials: true }
+    ).then(response => {
+      console.log('success', response);
+    }).catch(error => {
+      console.log('error', error)
+    });
     event.preventDefault();
-    console.log(newAccountData)
   }
 
   return (
@@ -26,21 +40,3 @@ export default function Signup() {
     </div>
   );
 }
-
-
-  // const addUser = async () => {
-  //   try {
-  //     const response = await window.fetch('http://localhost:3001/api/users', {
-  //       method: 'POST',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
-  //     const savedUser = await response.json();
-  //     console.log(savedUser);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };

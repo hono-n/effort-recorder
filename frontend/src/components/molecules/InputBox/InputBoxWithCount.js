@@ -26,7 +26,7 @@ export default function InputBoxWithCount({
             <p>/{max_char}</p>
           </div>
         </div>
-        <InputBoxBase getCount={handleCount} maxLength={max_char} {...rest} />
+        <InputBoxBase handleCount={handleCount} maxLength={max_char} {...rest} />
       </div>
     </div>
   )
