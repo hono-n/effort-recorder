@@ -36,9 +36,6 @@ export default function Login() {
   }
 
   return (
-    <LoginTemplate
-      handleFormValue={handleFormValue}
-      handleSubmit={handleSubmit}
-    />
+    <LoginTemplate handleFormValue={handleFormValue} handleSubmit={handleSubmit} />
   );
 }

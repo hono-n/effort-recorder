@@ -5,25 +5,4 @@
   flex-direction: row;
 
   @include unauthorized_template();
-
-  &__header {
-    @include header2;
-    margin-top: 80px;
-  }
-
-  &__user-name-input {
-    margin-top: 24px;
-  }
-
-  &__user-name-password {
-    margin-top: 24px;
-  }
-
-  &__login-button {
-    margin-top: 48px;
-  }
-
-  &__create-new-button {
-    margin-top: 56px;
-  }
 }
