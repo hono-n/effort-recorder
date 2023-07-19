@@ -1,0 +1,28 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.sub-menu-item {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 196px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 6px;
+
+  &__item-icon {
+    margin-left: 12px;
+    width: 20px;
+    height: 20px;
+  }
+
+  &__item-name {
+    @include text-label;
+    margin-left: 12px;
+    color: $gray-scale-00;
+  }
+
+  &:hover {
+    background-color: $primary-color-70;
+  }
+}
