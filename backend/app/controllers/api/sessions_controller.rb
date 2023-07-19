@@ -9,6 +9,14 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def show
+    if current_user
+      render json: { logged_in: true, user: @current_user }
+    else
+      render json: { logged_in: false, message: 'ログインしていません' }
+    end
+  end
+
   def destroy
     session.delete(:user_id)
     render json: { status: 200, logged_out: true }

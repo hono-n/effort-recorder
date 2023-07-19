@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users, only: %i[show create update destroy]
-    resource :session, only: %i[create destroy]
+    resource :session, only: %i[show create destroy]
   end
 end

@@ -1,5 +1,6 @@
-import { useState, createContext, useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useState, useEffect, createContext, useContext } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 const AuthContext = createContext(null);
 
@@ -7,6 +8,8 @@ export function AuthProvider({ children }) {
 
   const [loginStatus, setLoginStatus] = useState(false);
   const [user, setUser] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const login = (data, callback) => {
     setLoginStatus(true);
@@ -14,17 +17,39 @@ export function AuthProvider({ children }) {
     callback();
   }
 
-  const logout = (data, callback) => {
+  const logout = (callback) => {
     setLoginStatus(false);
     setUser(null);
     callback();
   }
 
-  const authProps = { loginStatus, user, login, logout };
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      await axios.get('http://localhost:3001/api/session', { withCredentials: true })
+        .then(response => {
+          if (response.data.logged_in && !loginStatus) {
+            login(response.data.user.user_name, () => { navigate("/dashboard") });
+          }
+          else if (!response.data.logged_in && loginStatus) {
+            logout();
+          }
+        }).catch(error => {
+          console.log('login error', error)
+        })
+      setIsLoading(false);
+    };
+    checkLoginStatus();
+  }, [])
 
-  return (
+  const authProps = { loginStatus, user, login, logout, isLoading };
+
+  if(isLoading){
+    return <h1>ロード中</h1>
+  }
+
+  else return (
     <AuthContext.Provider value={authProps}>
-      {children}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 }
@@ -35,9 +60,6 @@ export function useAuth() {
 
 export function RequireAuth({ children }) {
   const auth = useAuth();
-
-  if (!auth.loginStatus) {
-    return <Navigate to='/login' />
-  }
-  return children;
+  return auth.loginStatus ? children : <Navigate to='/login' />
 }
+
