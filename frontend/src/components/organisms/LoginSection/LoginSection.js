@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+import useSessionManagement from "../../../hooks/SessionManagement.hooks";
+
 import './LoginSection.scss';
 
 import InputBoxWithLabel from "../../molecules/InputBox/InputBoxWithLabel";
@@ -8,7 +10,9 @@ import Button from "../../molecules/Button/Button";
 import LinkButton from "../../molecules/LinkButton/LinkButton";
 
 
-export default function LoginSection({ handleFormValue, handleSubmit }) {
+export default function LoginSection() {
+
+  const { handleFormValue, handleLogin } = useSessionManagement();
 
   const { accountData, setAccountData } = handleFormValue;
 
@@ -23,7 +27,7 @@ export default function LoginSection({ handleFormValue, handleSubmit }) {
   return (
     <div className="login-section">
       <h1 className="login-section__header">ログイン</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <InputBoxWithLabel
           className='login-section__user-name-input'
           label='ユーザー名'

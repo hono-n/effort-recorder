@@ -4,11 +4,11 @@ import './LoginTemplate.scss';
 
 import LoginSection from "../../organisms/LoginSection/LoginSection";
 
-export default function LoginTemplate(props) {
+export default function LoginTemplate() {
   return (
     <div className="login">
       <div className="login__back-ground"></div>
-      <LoginSection className="login__section" {...props} />
+      <LoginSection className="login__section" />
     </div>
   )
 }

@@ -1,12 +1,14 @@
 import React from "react";
+import useAccountManagement from "../../../hooks/AccountManagement.hooks";
 
 import './SignupSection.scss';
 
 import Button from "../../molecules/Button/Button";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
 
-export default function SignupSection({ handleFormValue, handleSubmit }) {
+export default function SignupSection() {
 
+  const { handleFormValue, handleCreateAccount } = useAccountManagement();
   const { newAccountData, setNewAccountData } = handleFormValue;
 
   function handleInputValue(dataName, inputValue) {
@@ -20,7 +22,7 @@ export default function SignupSection({ handleFormValue, handleSubmit }) {
   return (
     <div className="signup-section">
       <h1 className="signup-section__header">アカウント新規作成</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleCreateAccount}>
         <InputBoxWithCount
           className='signup-section__user-name-input'
           label='ユーザー名'
