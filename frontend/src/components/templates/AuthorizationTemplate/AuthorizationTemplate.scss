@@ -1,0 +1,24 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.authorization {
+  display: flex;
+  flex-direction: row;
+
+  &__back-ground {
+    background-color: $primary-color-90;
+    height: 100vh;
+    width: calc(100vw - 486px);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 486px;
+  }
+
+  &__header {
+    @include header2;
+    margin-top: 80px;
+  }
+}

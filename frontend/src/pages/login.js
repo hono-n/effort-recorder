@@ -1,7 +1,11 @@
-import LoginTemplate from "../components/templates/LoginTemplate/LoginTemplate";
+import AuthorizationTemplate from "../components/templates/AuthorizationTemplate/AuthorizationTemplate";
+import LoginForm from "../components/organisms/LoginForm/LoginForm";
 
 export default function Login() {
   return (
-    <LoginTemplate />
+    <AuthorizationTemplate
+      children={<LoginForm />}
+      title='ログイン'
+    />
   );
 }

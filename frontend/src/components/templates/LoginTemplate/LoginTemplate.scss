@@ -1,8 +1,0 @@
-@use '../../../assets/styles/_global-style.scss' as *;
-
-.login {
-  display: flex;
-  flex-direction: row;
-
-  @include unauthorized_template();
-}
