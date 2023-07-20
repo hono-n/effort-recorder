@@ -1,5 +1,5 @@
 import React from "react";
-import useAccountManagement from "../../../hooks/AccountManagement.hooks";
+import { useSignupFormHandler } from "../../../hooks/FormHandler.hook";
 
 import './SignupSection.scss';
 
@@ -8,27 +8,18 @@ import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
 
 export default function SignupSection() {
 
-  const { handleFormValue, handleCreateAccount } = useAccountManagement();
-  const { newAccountData, setNewAccountData } = handleFormValue;
-
-  function handleInputValue(dataName, inputValue) {
-    const newValue = {
-      ...newAccountData,
-      [dataName]: inputValue
-    }
-    return setNewAccountData(newValue);
-  }
+  const { onSubmit, handleInputValue } = useSignupFormHandler();
 
   return (
     <div className="signup-section">
       <h1 className="signup-section__header">アカウント新規作成</h1>
-      <form onSubmit={handleCreateAccount}>
+      <form onSubmit={onSubmit}>
         <InputBoxWithCount
           className='signup-section__user-name-input'
           label='ユーザー名'
           placeholder='ユーザー名を入力'
           max_char='16'
-          handleInputValue={{ callback: handleInputValue, dataName: 'userName' }}
+          handleInputValue={{ callback: handleInputValue, fieldName: 'userName' }}
         />
         <InputBoxWithCount
           className='signup-section__user-name-password'
@@ -36,7 +27,7 @@ export default function SignupSection() {
           label='パスワード'
           placeholder='パスワードを入力'
           max_char='16'
-          handleInputValue={{ callback: handleInputValue, dataName: 'password' }}
+          handleInputValue={{ callback: handleInputValue, fieldName: 'password' }}
         />
         <InputBoxWithCount
           className='signup-section__user-name-password'
@@ -44,7 +35,7 @@ export default function SignupSection() {
           label='パスワード（確認）'
           placeholder='パスワードを入力'
           max_char='16'
-          handleInputValue={{ callback: handleInputValue, dataName: 'passwordConfirmation' }}
+          handleInputValue={{ callback: handleInputValue, fieldName: 'passwordConfirmation' }}
         />
         <Button
           type='submit'

@@ -19,14 +19,13 @@ export default function InputBox({
   }
 
   const handleInputChange = (event) => {
+    const newValue = event.target.value;
     if (handleCount) {
-      const newCount = event.target.value.length;
-      handleCount(newCount);
+      handleCount(newValue.length);
     }
     if (handleInputValue) {
-      const { callback, dataName } = handleInputValue;
-      const newValue = event.target.value;
-      callback(dataName, newValue);
+      const { callback, fieldName } = handleInputValue;
+      callback(fieldName, newValue);
     }
   }
 

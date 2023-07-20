@@ -44,7 +44,11 @@ export default function useSessionManagement() {
     });
   }
 
-  const sessionManagement = { handleFormValue: handleFormValue, handleLogin: handleLogin, handleLogout: handleLogout };
+  const sessionManagement = {
+    handleFormValue: handleFormValue,
+    handleLogin: handleLogin,
+    handleLogout: handleLogout
+  };
 
   return sessionManagement;
 }

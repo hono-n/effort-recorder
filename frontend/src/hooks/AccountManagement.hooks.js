@@ -36,7 +36,10 @@ export default function useAccountManagement() {
     event.preventDefault();
   }
 
-  const accountManagement = { handleFormValue: handleFormValue, handleCreateAccount: handleCreateAccount };
+  const accountManagement = {
+    handleFormValue: handleFormValue,
+    handleCreateAccount: handleCreateAccount
+  };
 
   return accountManagement;
 }
