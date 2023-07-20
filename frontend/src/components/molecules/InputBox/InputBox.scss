@@ -5,6 +5,21 @@
   @include text-label;
 }
 
+@mixin error-message {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  list-style: none;
+  gap: 6px;
+
+  p {
+    display: block;
+    @include text-error;
+    margin: 0px;
+  }
+}
+
+
 .input-box-with-label {
   width: fit-content;
 
@@ -17,6 +32,10 @@
     @include input--label();
     margin-bottom: 6px;
     left: 0;
+  }
+
+  &__error-message {
+    @include error-message();
   }
 }
 
@@ -49,4 +68,7 @@
     }
   }
 
+  &__error-message {
+    @include error-message();
+  }
 }

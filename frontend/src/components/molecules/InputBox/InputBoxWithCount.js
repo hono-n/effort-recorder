@@ -8,6 +8,7 @@ export default function InputBoxWithCount({
   label='ラベル',
   className,
   max_char,
+  errors,
   ...rest
 }) {
 
@@ -15,6 +16,12 @@ export default function InputBoxWithCount({
   const handleCount = (newCount) => {
     setCount(newCount);
   }
+
+  const element = errors?.map(error =>
+    <li key={error.id}>
+      <p>{error.message}</p>
+    </li>
+  );
 
   return (
     <div className={cn('input-box-with-count', className)}>
@@ -27,6 +34,11 @@ export default function InputBoxWithCount({
           </div>
         </div>
         <InputBoxBase handleCount={handleCount} maxLength={max_char} {...rest} />
+        {errors &&
+          <ul className="input-box-with-label__error-message">
+            {element}
+          </ul>
+        }
       </div>
     </div>
   )

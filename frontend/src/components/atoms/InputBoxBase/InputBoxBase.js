@@ -3,14 +3,14 @@ import cn from "classnames";
 
 import './InputBoxBase.scss';
 
-export default function InputBox({
+export default function InputBoxBase({
   input_type = 'text',
   state = 'active',
   placeholder = 'プレースホルダー',
   style,
   handleCount,
   handleInputValue,
-  maxLength
+  maxLength,
 }) {
   const InputBoxClass = {
     'input-box': true,
