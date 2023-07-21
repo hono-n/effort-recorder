@@ -1,7 +1,7 @@
 import useAccountManagement from "./AccountManagement.hooks";
 import useSessionManagement from "./SessionManagement.hooks";
 
-function generateFormHandler(data, setter, submitAction) {
+function generateFormHandler({ data, setter, submitAction }) {
 
   const formHandler = {
     onSubmit: submitAction,
@@ -21,12 +21,20 @@ export function useSignupFormHandler() {
   const { handleFormValue, handleCreateAccount } = useAccountManagement();
   const { newAccountData, setNewAccountData } = handleFormValue;
 
-  return generateFormHandler(newAccountData, setNewAccountData, handleCreateAccount);
+  return generateFormHandler({
+    data: newAccountData,
+    setter: setNewAccountData,
+    submitAction: handleCreateAccount
+  });
 }
 
 export function useLoginFormHandler() {
   const { handleFormValue, handleLogin } = useSessionManagement();
   const { accountData, setAccountData } = handleFormValue;
 
-  return generateFormHandler(accountData, setAccountData, handleLogin);
+  return generateFormHandler({
+    data: accountData,
+    setter: setAccountData,
+    submitAction: handleLogin
+  });
 }
