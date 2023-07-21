@@ -21,13 +21,14 @@ export default function InputBoxBase({
 
   const handleInputChange = (event) => {
     const newValue = event.target.value;
-    if (handleCount) {
-      handleCount(newValue.length);
-    }
+
+    handleCount && handleCount(newValue.length);
+
     if (handleInputValue) {
       const { callback, fieldName } = handleInputValue;
       callback(fieldName, newValue);
     }
+
     handleError && handleError(newValue);
   }
 

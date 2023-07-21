@@ -1,6 +1,7 @@
 import React from "react";
 
 import useSignupForm from "../../../hooks/SignupForm.hook";
+import { useSignupErrorHandler } from "../../../hooks/ErrorHandler.hook";
 
 import Button from "../../molecules/Button/Button";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
@@ -11,15 +12,17 @@ export default function SignupForm() {
 
   const {
     formData,
-    setFormData,
     updateFormValue,
-    errors,
-    validators,
     handleCreateAccount
   } = useSignupForm();
 
-  const { userNameErrors, passwordErrors, passwordConfirmationErrors } = errors;
-  const { userNameValidator, passwordValidator, passwordConfirmationValidator } = validators;
+  const {
+    errors,
+    userNameValidator,
+    passwordValidator,
+    passwordConfirmationValidator
+  } = useSignupErrorHandler(formData);
+
 
   return (
     <div className="signup-form">
@@ -29,10 +32,10 @@ export default function SignupForm() {
           label='ユーザー名'
           placeholder='ユーザー名を入力'
           max_char='16'
-          state={userNameErrors.filter(error => error.isError).length === 0 ? 'active' : 'error'}
+          state={errors.userName.filter(error => error.isError).length === 0 ? 'active' : 'error'}
           handleInputValue={{ callback: updateFormValue, fieldName: 'userName' }}
           handleError={userNameValidator}
-          errors={userNameErrors}
+          errors={errors.userName}
         />
         <InputBoxWithCount
           className='signup-form__user-name-password'
@@ -40,10 +43,10 @@ export default function SignupForm() {
           label='パスワード'
           placeholder='パスワードを入力'
           max_char='16'
-          state={passwordErrors.filter(error => error.isError).length === 0 ? 'active' : 'error'}
+          state={errors.password.filter(error => error.isError).length === 0 ? 'active' : 'error'}
           handleInputValue={{ callback: updateFormValue, fieldName: 'password' }}
           handleError={passwordValidator}
-          errors={passwordErrors}
+          errors={errors.password}
         />
         <InputBoxWithCount
           className='signup-form__user-name-password'
@@ -51,10 +54,10 @@ export default function SignupForm() {
           label='パスワード（確認）'
           placeholder='パスワードを入力'
           max_char='16'
-          state={passwordConfirmationErrors.filter(error => error.isError).length === 0 ? 'active' : 'error'}
+          state={errors.passwordConfirmation.filter(error => error.isError).length === 0 ? 'active' : 'error'}
           handleInputValue={{ callback: updateFormValue, fieldName: 'passwordConfirmation' }}
           handleError={passwordConfirmationValidator}
-          errors={passwordConfirmationErrors}
+          errors={errors.passwordConfirmation}
         />
         <Button
           type='submit'
