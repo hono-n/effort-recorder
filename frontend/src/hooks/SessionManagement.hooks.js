@@ -3,24 +3,25 @@ import { useState } from 'react';
 import axios from 'axios'
 
 import { useAuth } from "../contexts/AuthContext";
+import { useUpdateFormValue } from "./FormHandler.hook";
 
+// 情報を所有するコンポーネントは LoginForm.js
 export default function useSessionManagement() {
 
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const [accountData, setAccountData] = useState({
+  const [formData, setFormData] = useState({
     userName: '',
     password: '',
   });
-  const handleFormValue = { accountData: accountData, setAccountData: setAccountData }
 
   const handleLogin = (event) => {
     axios.post('http://localhost:3001/api/session',
       {
         user: {
-          user_name: accountData.userName,
-          password: accountData.password,
+          user_name: formData.userName,
+          password: formData.password,
         }
       },
       { withCredentials: true }
@@ -44,8 +45,14 @@ export default function useSessionManagement() {
     });
   }
 
+
   const sessionManagement = {
-    handleFormValue: handleFormValue,
+    formData: formData,
+    setFormData: setFormData,
+    updateFormValue: useUpdateFormValue({
+      formData: formData,
+      setFormData: setFormData,
+    }),
     handleLogin: handleLogin,
     handleLogout: handleLogout
   };

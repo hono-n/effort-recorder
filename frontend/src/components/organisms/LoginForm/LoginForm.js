@@ -1,33 +1,33 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-import { useLoginFormHandler } from "../../../hooks/FormHandler.hook";
-
-import './LoginForm.scss';
+import useSessionManagement from "../../../hooks/SessionManagement.hooks";
 
 import InputBoxWithLabel from "../../molecules/InputBox/InputBoxWithLabel";
 import Button from "../../molecules/Button/Button";
 import LinkButton from "../../molecules/LinkButton/LinkButton";
+import './LoginForm.scss';
 
 
 export default function LoginForm() {
-  const { onSubmit, handleInputValue } = useLoginFormHandler();
+
+  const { formData, setFormData, updateFormValue, handleLogin } = useSessionManagement();
 
   return (
     <div className="login-form">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleLogin}>
         <InputBoxWithLabel
           className='login-form__user-name-input'
           label='ユーザー名'
           placeholder='ユーザー名を入力'
-          handleInputValue={{ callback: handleInputValue, fieldName: 'userName' }}
+          handleInputValue={{ callback: updateFormValue, fieldName: 'userName' }}
         />
         <InputBoxWithLabel
           className='login-form__user-name-password'
           input_type='password'
           label='パスワード'
           placeholder='パスワードを入力'
-          handleInputValue={{ callback: handleInputValue, fieldName: 'password' }}
+          handleInputValue={{ callback: updateFormValue, fieldName: 'password' }}
         />
         <Button
           type='submit'

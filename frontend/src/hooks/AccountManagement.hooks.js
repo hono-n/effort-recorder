@@ -2,27 +2,29 @@ import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios'
 
+import { useUpdateFormValue } from "./FormHandler.hook";
 import { useAuth } from "../contexts/AuthContext";
 
+
+// 情報を所有するコンポーネントは SignupForm.js
 export default function useAccountManagement() {
 
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const [newAccountData, setNewAccountData] = useState({
+  const [formData, setFormData] = useState({
     userName: '',
     password: '',
     passwordConfirmation: ''
   });
-  const handleFormValue = { newAccountData, setNewAccountData }
 
   const handleCreateAccount = (event) => {
     axios.post('http://localhost:3001/api/users',
       {
         user: {
-          user_name: newAccountData.userName,
-          password: newAccountData.password,
-          password_confirmation: newAccountData.passwordConfirmation
+          user_name: formData.userName,
+          password: formData.password,
+          password_confirmation: formData.passwordConfirmation
         }
       },
       { withCredentials: true }
@@ -37,8 +39,13 @@ export default function useAccountManagement() {
   }
 
   const accountManagement = {
-    handleFormValue: handleFormValue,
-    handleCreateAccount: handleCreateAccount
+    formData: formData,
+    setFormData: setFormData,
+    updateFormValue: useUpdateFormValue({
+      formData: formData,
+      setFormData: setFormData,
+    }),
+    handleCreateAccount: handleCreateAccount,
   };
 
   return accountManagement;

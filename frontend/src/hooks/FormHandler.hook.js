@@ -1,40 +1,12 @@
-import useAccountManagement from "./AccountManagement.hooks";
-import useSessionManagement from "./SessionManagement.hooks";
+export function useUpdateFormValue({ formData, setFormData }) {
 
-function generateFormHandler({ data, setter, submitAction }) {
-
-  const formHandler = {
-    onSubmit: submitAction,
-    handleInputValue: (fieldName, inputValue) => {
-      const newValue = {
-        ...data,
-        [fieldName]: inputValue
-      }
-      return setter(newValue);
+  function updateFormValue(fieldName, inputValue) {
+    const newValue = {
+      ...formData,
+      [fieldName]: inputValue
     }
+    return setFormData(newValue);
   }
-  return formHandler;
-}
 
-export function useSignupFormHandler() {
-
-  const { handleFormValue, handleCreateAccount } = useAccountManagement();
-  const { newAccountData, setNewAccountData } = handleFormValue;
-
-  return generateFormHandler({
-    data: newAccountData,
-    setter: setNewAccountData,
-    submitAction: handleCreateAccount
-  });
-}
-
-export function useLoginFormHandler() {
-  const { handleFormValue, handleLogin } = useSessionManagement();
-  const { accountData, setAccountData } = handleFormValue;
-
-  return generateFormHandler({
-    data: accountData,
-    setter: setAccountData,
-    submitAction: handleLogin
-  });
+  return updateFormValue;
 }

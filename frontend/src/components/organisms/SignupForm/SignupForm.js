@@ -1,24 +1,25 @@
 import React from "react";
-import { useSignupFormHandler } from "../../../hooks/FormHandler.hook";
 
-import './SignupForm.scss';
+import useAccountManagement from "../../../hooks/AccountManagement.hooks";
 
 import Button from "../../molecules/Button/Button";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
 
+import './SignupForm.scss';
+
 export default function SignupForm() {
 
-  const { onSubmit, handleInputValue } = useSignupFormHandler();
+  const { formData, setFormData, updateFormValue, handleCreateAccount } = useAccountManagement();
 
   return (
     <div className="signup-form">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleCreateAccount}>
         <InputBoxWithCount
           className='signup-form__user-name-input'
           label='ユーザー名'
           placeholder='ユーザー名を入力'
           max_char='16'
-          handleInputValue={{ callback: handleInputValue, fieldName: 'userName' }}
+          handleInputValue={{ callback: updateFormValue, fieldName: 'userName' }}
         />
         <InputBoxWithCount
           className='signup-form__user-name-password'
@@ -26,7 +27,7 @@ export default function SignupForm() {
           label='パスワード'
           placeholder='パスワードを入力'
           max_char='16'
-          handleInputValue={{ callback: handleInputValue, fieldName: 'password' }}
+          handleInputValue={{ callback: updateFormValue, fieldName: 'password' }}
         />
         <InputBoxWithCount
           className='signup-form__user-name-password'
@@ -34,7 +35,7 @@ export default function SignupForm() {
           label='パスワード（確認）'
           placeholder='パスワードを入力'
           max_char='16'
-          handleInputValue={{ callback: handleInputValue, fieldName: 'passwordConfirmation' }}
+          handleInputValue={{ callback: updateFormValue, fieldName: 'passwordConfirmation' }}
         />
         <Button
           type='submit'
