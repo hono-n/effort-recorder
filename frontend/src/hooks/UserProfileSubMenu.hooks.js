@@ -1,4 +1,7 @@
-import useSessionManagement from "./SessionManagement.hooks";
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../contexts/AuthContext";
 
 import setting from '../assets/icons/settings.svg';
 import logout from '../assets/icons/logout.svg';
@@ -6,7 +9,20 @@ import logout from '../assets/icons/logout.svg';
 
 export default function useUserProfileSubMenu() {
 
-  const { handleLogout } = useSessionManagement();
+  const auth = useAuth();
+  const navigate = useNavigate();
+
+
+  const handleLogout = () => {
+    axios.delete('http://localhost:3001/api/session', { withCredentials: true }
+    ).then(response => {
+      auth.logout(() => { navigate("/login") });
+      console.log(response);
+    }).catch(error => {
+      console.log('logout error', error)
+    });
+  }
+
 
   const menu_items = [
     {

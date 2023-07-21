@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-import useSessionManagement from "../../../hooks/SessionManagement.hooks";
+import useLoginForm from "../../../hooks/LoginForm.hooks";
 
 import InputBoxWithLabel from "../../molecules/InputBox/InputBoxWithLabel";
 import Button from "../../molecules/Button/Button";
@@ -11,7 +11,7 @@ import './LoginForm.scss';
 
 export default function LoginForm() {
 
-  const { formData, setFormData, updateFormValue, handleLogin } = useSessionManagement();
+  const { formData, setFormData, updateFormValue, handleLogin } = useLoginForm();
 
   return (
     <div className="login-form">

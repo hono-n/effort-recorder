@@ -1,6 +1,6 @@
 import React from "react";
 
-import useAccountManagement from "../../../hooks/AccountManagement.hooks";
+import useSignupForm from "../../../hooks/SignupForm.hook";
 
 import Button from "../../molecules/Button/Button";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
@@ -9,7 +9,7 @@ import './SignupForm.scss';
 
 export default function SignupForm() {
 
-  const { formData, setFormData, updateFormValue, handleCreateAccount } = useAccountManagement();
+  const { formData, setFormData, updateFormValue, handleCreateAccount } = useSignupForm();
 
   return (
     <div className="signup-form">

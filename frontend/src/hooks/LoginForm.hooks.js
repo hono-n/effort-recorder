@@ -2,12 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios'
 
-import { useUpdateFormValue } from "./FormHandler.hook";
 import { useAuth } from "../contexts/AuthContext";
+import { useUpdateFormValue } from "./FormHandler.hook";
 
-
-// 情報を所有するコンポーネントは SignupForm.js
-export default function useAccountManagement() {
+// 情報を所有するコンポーネントは LoginForm.js
+export default function useLoginForm() {
 
   const auth = useAuth();
   const navigate = useNavigate();
@@ -15,39 +14,39 @@ export default function useAccountManagement() {
   const [formData, setFormData] = useState({
     userName: '',
     password: '',
-    passwordConfirmation: ''
   });
 
-  const handleCreateAccount = (event) => {
-    axios.post('http://localhost:3001/api/users',
+  const handleLogin = (event) => {
+    axios.post('http://localhost:3001/api/session',
       {
         user: {
           user_name: formData.userName,
           password: formData.password,
-          password_confirmation: formData.passwordConfirmation
         }
       },
       { withCredentials: true }
     ).then(response => {
-      if (response.data.status === 'created') {
+      if (response.data.logged_in) {
         auth.login(response.data.user.user_name, () => { navigate("/dashboard") });
       }
     }).catch(error => {
-      console.log('error', error)
+      console.log('login error', error)
     });
     event.preventDefault();
   }
 
-  const accountManagement = {
+
+
+  const loginForm = {
     formData: formData,
     setFormData: setFormData,
     updateFormValue: useUpdateFormValue({
       formData: formData,
       setFormData: setFormData,
     }),
-    handleCreateAccount: handleCreateAccount,
+    handleLogin: handleLogin,
   };
 
-  return accountManagement;
+  return loginForm;
 }
 
