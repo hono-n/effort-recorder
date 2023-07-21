@@ -9,7 +9,17 @@ import './SignupForm.scss';
 
 export default function SignupForm() {
 
-  const { formData, setFormData, updateFormValue, handleCreateAccount } = useSignupForm();
+  const {
+    formData,
+    setFormData,
+    updateFormValue,
+    errors,
+    validators,
+    handleCreateAccount
+  } = useSignupForm();
+
+  const { userNameErrors, passwordErrors, passwordConfirmationErrors } = errors;
+  const { userNameValidator, passwordValidator, passwordConfirmationValidator } = validators;
 
   return (
     <div className="signup-form">
@@ -19,7 +29,10 @@ export default function SignupForm() {
           label='ユーザー名'
           placeholder='ユーザー名を入力'
           max_char='16'
+          state={userNameErrors.filter(error => error.isError).length === 0 ? 'active' : 'error'}
           handleInputValue={{ callback: updateFormValue, fieldName: 'userName' }}
+          handleError={userNameValidator}
+          errors={userNameErrors}
         />
         <InputBoxWithCount
           className='signup-form__user-name-password'
@@ -27,7 +40,10 @@ export default function SignupForm() {
           label='パスワード'
           placeholder='パスワードを入力'
           max_char='16'
+          state={passwordErrors.filter(error => error.isError).length === 0 ? 'active' : 'error'}
           handleInputValue={{ callback: updateFormValue, fieldName: 'password' }}
+          handleError={passwordValidator}
+          errors={passwordErrors}
         />
         <InputBoxWithCount
           className='signup-form__user-name-password'
@@ -35,7 +51,10 @@ export default function SignupForm() {
           label='パスワード（確認）'
           placeholder='パスワードを入力'
           max_char='16'
+          state={passwordConfirmationErrors.filter(error => error.isError).length === 0 ? 'active' : 'error'}
           handleInputValue={{ callback: updateFormValue, fieldName: 'passwordConfirmation' }}
+          handleError={passwordConfirmationValidator}
+          errors={passwordConfirmationErrors}
         />
         <Button
           type='submit'

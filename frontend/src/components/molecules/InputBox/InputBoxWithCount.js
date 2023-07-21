@@ -5,7 +5,7 @@ import './InputBox.scss';
 import InputBoxBase from '../../atoms/InputBoxBase/InputBoxBase'
 
 export default function InputBoxWithCount({
-  label='ラベル',
+  label = 'ラベル',
   className,
   max_char,
   errors,
@@ -18,6 +18,7 @@ export default function InputBoxWithCount({
   }
 
   const element = errors?.map(error =>
+    error.isError &&
     <li key={error.id}>
       <p>{error.message}</p>
     </li>
@@ -34,7 +35,7 @@ export default function InputBoxWithCount({
           </div>
         </div>
         <InputBoxBase handleCount={handleCount} maxLength={max_char} {...rest} />
-        {errors &&
+        {errors?.filter(error => error.isError).length > 0 &&
           <ul className="input-box-with-label__error-message">
             {element}
           </ul>

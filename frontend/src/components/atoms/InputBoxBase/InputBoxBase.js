@@ -10,6 +10,7 @@ export default function InputBoxBase({
   style,
   handleCount,
   handleInputValue,
+  handleError,
   maxLength,
 }) {
   const InputBoxClass = {
@@ -27,6 +28,7 @@ export default function InputBoxBase({
       const { callback, fieldName } = handleInputValue;
       callback(fieldName, newValue);
     }
+    handleError && handleError(newValue);
   }
 
   return (
