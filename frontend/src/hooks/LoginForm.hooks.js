@@ -39,12 +39,11 @@ export default function useLoginForm() {
 
   const loginForm = {
     formData: formData,
-    setFormData: setFormData,
     updateFormValue: useUpdateFormValue({
       formData: formData,
       setFormData: setFormData,
     }),
-    handleLogin: handleLogin,
+    handleFormAction: handleLogin,
   };
 
   return loginForm;

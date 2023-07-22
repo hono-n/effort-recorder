@@ -11,11 +11,11 @@ import './LoginForm.scss';
 
 export default function LoginForm() {
 
-  const { formData, setFormData, updateFormValue, handleLogin } = useLoginForm();
+  const { formData, updateFormValue, handleFormAction } = useLoginForm();
 
   return (
     <div className="login-form">
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleFormAction}>
         <InputBoxWithLabel
           className='login-form__user-name-input'
           label='ユーザー名'

@@ -46,7 +46,7 @@ export default function useSignupForm() {
       formData: formData,
       setFormData: setFormData,
     }),
-    handleCreateAccount: handleCreateAccount,
+    handleFormAction: handleCreateAccount,
   };
 
   return SignupForm;

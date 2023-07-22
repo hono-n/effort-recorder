@@ -13,7 +13,7 @@ export default function SignupForm() {
   const {
     formData,
     updateFormValue,
-    handleCreateAccount
+    handleFormAction
   } = useSignupForm();
 
   const {
@@ -26,7 +26,7 @@ export default function SignupForm() {
 
   return (
     <div className="signup-form">
-      <form onSubmit={handleCreateAccount}>
+      <form onSubmit={handleFormAction}>
         <InputBoxWithCount
           className='signup-form__user-name-input'
           label='ユーザー名'
