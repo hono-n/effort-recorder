@@ -20,6 +20,17 @@ export default function useSignupForm() {
   });
 
 
+  const signupErrorHandler = useSignupErrorHandler();
+  const initialValue = signupErrorHandler.initialValue;
+
+  const [errors, setErrors] = useState(initialValue);
+  const {validate} = useSignupErrorHandler();
+  const updateFormData = useUpdateFormValue({
+    formData: formData,
+    setFormData: setFormData,
+  });
+
+
   const handleCreateAccount = (event) => {
     axios.post('http://localhost:3001/api/users',
       {
@@ -40,12 +51,23 @@ export default function useSignupForm() {
     event.preventDefault();
   }
 
+  function handleInputValue (fieldName, inputValue) {
+
+    // (1) ユーザーの入力値を反映してformDataを更新（setFormDataが実行される）
+    const newFormData = updateFormData(fieldName, inputValue);
+
+    // (2) 更新されたformDataをもとにerrorsを更新（setErrorsが実行される）
+    validate(errors, setErrors, newFormData);
+  }
+
   const SignupForm = {
     formData: formData,
-    updateFormValue: useUpdateFormValue({
-      formData: formData,
-      setFormData: setFormData,
-    }),
+    // updateFormValue: useUpdateFormValue({
+    //   formData: formData,
+    //   setFormData: setFormData,
+    // }),
+    errors: errors,
+    handleInputValue: handleInputValue,
     handleFormAction: handleCreateAccount,
   };
 

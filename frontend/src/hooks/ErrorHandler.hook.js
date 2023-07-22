@@ -1,112 +1,94 @@
-import { useState } from "react";
+export function useSignupErrorHandler() {
 
-export function useSignupErrorHandler(formData) {
+  const errorDetails = {
+    0: {
+      message: '5文字以上で入力してください',
+      validator: (inputValue) => {
+        return inputValue.length > 0 && inputValue.length < 5;
+      }
+    },
+    1: {
+      message: '半角英数字で入力してください',
+      validator: (inputValue) => {
+        return !inputValue.match(/^[0-9a-zA-Z]*$/);
+      }
+    },
+    2: {
+      message: 'パスワード欄の入力値と一致させてください',
+      validator: ({ password, confirmation }) => {
+        return confirmation.length > 0 && confirmation !== password;;
+      }
+    },
+  }
 
-  const [errors, setErrors] = useState(initialValue);
+  const initialValue = {
+    userName: [
+      { id: 0, isError: false, message: errorDetails[0].message },
+      { id: 1, isError: false, message: errorDetails[1].message }
+    ],
+    password: [
+      { id: 0, isError: false, message: errorDetails[0].message },
+      { id: 1, isError: false, message: errorDetails[1].message }
+    ],
+    passwordConfirmation: [
+      { id: 2, isError: false, message: errorDetails[2].message }
+    ]
+  }
 
-  function updateError({ newErrorState, errorObj, fieldName, id }) {
-    if (newErrorState !== errorObj[id].isError) {
-      errorObj[id].isError = newErrorState;
+
+  function validate(errors, setErrors, formData) {
+
+    function updateError({ newErrorState, errorObj, fieldName, itrIdx }) {
+      if (newErrorState !== errorObj[itrIdx]?.isError) {
+        errorObj[itrIdx].isError = newErrorState;
+      }
+      setErrors({ ...errors, [fieldName]: errorObj });
     }
-    setErrors({ ...errors, [fieldName]: errorObj });
-  }
 
+    const userNameErrorObjs = [...errors.userName];
+    const passwordErrorObjs = [...errors.password];
+    const confirmationErrorObjs = [...errors.passwordConfirmation];
 
-  function userNameValidator(inputValue) {
-    const userNameErrors = errors.userName;
-    const newErrorState = [...userNameErrors];
-
-    const targetErrorId = [0, 1];
-
-    let index = 0;
-    targetErrorId.map(errorId => {
-      const error = errorDetails[errorId].validator(inputValue);
+    // userNameインプットのエラー判定
+    const userNameErrorIds = [0, 1];
+    userNameErrorIds.map((errorId, index) => {
+      const error = errorDetails[errorId].validator(formData.userName);
       updateError({
         newErrorState: error,
-        errorObj: newErrorState,
+        errorObj: userNameErrorObjs,
         fieldName: 'userName',
-        id: index
+        itrIdx: index
       });
-      index++;
     })
-  }
 
-  function passwordValidator(inputValue) {
-    const passwordErrors = errors.password;
-    const newErrorState = [...passwordErrors];
-
-    const targetErrorId = [0, 1];
-
-    let index = 0;
-    targetErrorId.map(errorId => {
-      const error = errorDetails[errorId].validator(inputValue);
+    // passwordインプットエラーの判定
+    const passwordErrorIds = [0, 1];
+    passwordErrorIds.map((errorId, index) => {
+      const error = errorDetails[errorId].validator(formData.password);
       updateError({
         newErrorState: error,
-        errorObj: newErrorState,
+        errorObj: passwordErrorObjs,
         fieldName: 'password',
-        id: index
+        itrIdx: index
       });
-      index++;
     })
-  }
 
-  function passwordConfirmationValidator(inputValue) {
-    const passwordConfirmationErrors = errors.passwordConfirmation;
-    const newErrorState = [...passwordConfirmationErrors];
-
-    // targetErrorId = 2;
-
+    // passwordConfirmationエラーの判定
+    // confirmationErrorIds = [2];
     const error = errorDetails[2].validator({
       password: formData.password,
-      confirmation: inputValue
+      confirmation: formData.passwordConfirmation
     });
     updateError({
       newErrorState: error,
-      errorObj: newErrorState,
+      errorObj: confirmationErrorObjs,
       fieldName: 'passwordConfirmation',
-      id: 0
+      itrIdx: 0
     });
-
   }
 
-  return { errors, userNameValidator, passwordValidator, passwordConfirmationValidator };
+  return { initialValue, validate };
 }
-
-const errorDetails = {
-  0: {
-    message: '5文字以上で入力してください',
-    validator: (inputValue) => {
-      return inputValue.length > 0 && inputValue.length < 5;
-    }
-  },
-  1: {
-    message: '半角英数字で入力してください',
-    validator: (inputValue) => {
-      return !inputValue.match(/^[0-9a-zA-Z]*$/);
-    }
-  },
-  2: {
-    message: 'パスワード欄の入力値と一致させてください',
-    validator: ({ password, confirmation }) => {
-      return confirmation !== password;;
-    }
-  },
-}
-
-const initialValue = {
-  userName: [
-    { id: 0, isError: false, message: errorDetails[0].message },
-    { id: 1, isError: false, message: errorDetails[1].message }
-  ],
-  password: [
-    { id: 0, isError: false, message: errorDetails[0].message },
-    { id: 1, isError: false, message: errorDetails[1].message }
-  ],
-  passwordConfirmation: [
-    { id: 2, isError: false, message: errorDetails[2].message }
-  ]
-}
-
 
 
 

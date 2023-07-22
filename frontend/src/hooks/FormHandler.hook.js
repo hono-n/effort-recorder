@@ -1,11 +1,12 @@
 export function useUpdateFormValue({ formData, setFormData }) {
 
   function updateFormValue(fieldName, inputValue) {
-    const newValue = {
+    const newFormData = {
       ...formData,
       [fieldName]: inputValue
     }
-    return setFormData(newValue);
+    setFormData(newFormData);
+    return newFormData;
   }
 
   return updateFormValue;

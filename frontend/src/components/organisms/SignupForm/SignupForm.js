@@ -1,7 +1,6 @@
 import React from "react";
 
 import useSignupForm from "../../../hooks/SignupForm.hook";
-import { useSignupErrorHandler } from "../../../hooks/ErrorHandler.hook";
 
 import Button from "../../molecules/Button/Button";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
@@ -10,19 +9,7 @@ import './SignupForm.scss';
 
 export default function SignupForm() {
 
-  const {
-    formData,
-    updateFormValue,
-    handleFormAction
-  } = useSignupForm();
-
-  const {
-    errors,
-    userNameValidator,
-    passwordValidator,
-    passwordConfirmationValidator
-  } = useSignupErrorHandler(formData);
-
+  const {errors, handleInputValue, handleFormAction} = useSignupForm();
 
   return (
     <div className="signup-form">
@@ -33,8 +20,7 @@ export default function SignupForm() {
           placeholder='ユーザー名を入力'
           max_char='16'
           state={errors.userName.filter(error => error.isError).length === 0 ? 'active' : 'error'}
-          handleInputValue={{ callback: updateFormValue, fieldName: 'userName' }}
-          handleError={userNameValidator}
+          handleInputValue={{ callback: handleInputValue, fieldName: 'userName' }}
           errors={errors.userName}
         />
         <InputBoxWithCount
@@ -44,8 +30,7 @@ export default function SignupForm() {
           placeholder='パスワードを入力'
           max_char='16'
           state={errors.password.filter(error => error.isError).length === 0 ? 'active' : 'error'}
-          handleInputValue={{ callback: updateFormValue, fieldName: 'password' }}
-          handleError={passwordValidator}
+          handleInputValue={{ callback: handleInputValue, fieldName: 'password' }}
           errors={errors.password}
         />
         <InputBoxWithCount
@@ -55,8 +40,7 @@ export default function SignupForm() {
           placeholder='パスワードを入力'
           max_char='16'
           state={errors.passwordConfirmation.filter(error => error.isError).length === 0 ? 'active' : 'error'}
-          handleInputValue={{ callback: updateFormValue, fieldName: 'passwordConfirmation' }}
-          handleError={passwordConfirmationValidator}
+          handleInputValue={{ callback: handleInputValue, fieldName: 'passwordConfirmation' }}
           errors={errors.passwordConfirmation}
         />
         <Button
