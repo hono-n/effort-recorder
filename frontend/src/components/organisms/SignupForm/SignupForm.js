@@ -9,7 +9,22 @@ import './SignupForm.scss';
 
 export default function SignupForm() {
 
-  const {errors, handleInputValue, handleFormAction} = useSignupForm();
+  const { formData, errors, handleInputValue, handleFormAction } = useSignupForm();
+
+  const hasEmptyField =
+    formData.userName.length === 0
+    || formData.password.length === 0
+    || formData.passwordConfirmation.length === 0;
+
+  const hasError =
+    errors.userName.find(error => error.isError)
+    || errors.password.find(error => error.isError)
+    || errors.passwordConfirmation.find(error => error.isError)
+
+  function getInputState(filedName) {
+    const state = errors[filedName].filter(error => error.isError).length === 0 ? 'active' : 'error';
+    return state;
+  }
 
   return (
     <div className="signup-form">
@@ -19,7 +34,7 @@ export default function SignupForm() {
           label='ユーザー名'
           placeholder='ユーザー名を入力'
           max_char='16'
-          state={errors.userName.filter(error => error.isError).length === 0 ? 'active' : 'error'}
+          state={getInputState('userName')}
           handleInputValue={{ callback: handleInputValue, fieldName: 'userName' }}
           errors={errors.userName}
         />
@@ -29,7 +44,7 @@ export default function SignupForm() {
           label='パスワード'
           placeholder='パスワードを入力'
           max_char='16'
-          state={errors.password.filter(error => error.isError).length === 0 ? 'active' : 'error'}
+          state={getInputState('password')}
           handleInputValue={{ callback: handleInputValue, fieldName: 'password' }}
           errors={errors.password}
         />
@@ -39,7 +54,7 @@ export default function SignupForm() {
           label='パスワード（確認）'
           placeholder='パスワードを入力'
           max_char='16'
-          state={errors.passwordConfirmation.filter(error => error.isError).length === 0 ? 'active' : 'error'}
+          state={getInputState('passwordConfirmation')}
           handleInputValue={{ callback: handleInputValue, fieldName: 'passwordConfirmation' }}
           errors={errors.passwordConfirmation}
         />
@@ -47,6 +62,7 @@ export default function SignupForm() {
           type='submit'
           className='signup-form__signup-button'
           label='アカウント作成'
+          state={hasEmptyField || hasError ? 'disabled' : 'active'}
         />
       </form>
     </div>

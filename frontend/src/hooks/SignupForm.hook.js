@@ -62,10 +62,6 @@ export default function useSignupForm() {
 
   const SignupForm = {
     formData: formData,
-    // updateFormValue: useUpdateFormValue({
-    //   formData: formData,
-    //   setFormData: setFormData,
-    // }),
     errors: errors,
     handleInputValue: handleInputValue,
     handleFormAction: handleCreateAccount,
