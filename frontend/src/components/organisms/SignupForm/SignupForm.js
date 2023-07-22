@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import useSignupForm from "../../../hooks/SignupForm.hook";
 
 import Button from "../../molecules/Button/Button";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
+import LinkButton from "../../molecules/LinkButton/LinkButton";
 
 import './SignupForm.scss';
 
@@ -65,6 +67,12 @@ export default function SignupForm() {
           state={hasEmptyField || hasError ? 'disabled' : 'active'}
         />
       </form>
+      <Link to='/login'>
+        <LinkButton
+          className='signup-form__signup-to-login-button'
+          label='ログイン画面へ戻る'
+        />
+      </Link>
     </div>
   )
 }
