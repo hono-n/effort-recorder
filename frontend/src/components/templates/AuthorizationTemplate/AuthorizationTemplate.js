@@ -8,7 +8,7 @@ import FlashMessage from "../../molecules/FlashMessage/FlashMessage";
 export default function AuthorizationTemplate({ children, title }) {
 
   const { showFlashMessage, flashMessage } = useFlashMessageContext();
-  
+
   return (
     <div className="authorization">
       {showFlashMessage &&

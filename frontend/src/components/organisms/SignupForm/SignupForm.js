@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 import useSignupForm from "../../../hooks/SignupForm.hook";
+import { useFlashMessageContext } from "../../../contexts/FlashMessageContext";
 
 import Button from "../../molecules/Button/Button";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
@@ -12,6 +13,7 @@ import './SignupForm.scss';
 export default function SignupForm() {
 
   const { formData, errors, handleInputValue, handleFormAction } = useSignupForm();
+  const { setShowFlashMessage } = useFlashMessageContext();
 
   const hasEmptyField =
     formData.userName.length === 0
@@ -71,6 +73,7 @@ export default function SignupForm() {
         <LinkButton
           className='signup-form__signup-to-login-button'
           label='ログイン画面へ戻る'
+          handleClick={() => setShowFlashMessage(false)}
         />
       </Link>
     </div>

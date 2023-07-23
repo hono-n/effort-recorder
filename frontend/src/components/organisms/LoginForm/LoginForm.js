@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 import useLoginForm from "../../../hooks/LoginForm.hooks";
+import { useFlashMessageContext } from "../../../contexts/FlashMessageContext";
 
 import InputBoxWithLabel from "../../molecules/InputBox/InputBoxWithLabel";
 import Button from "../../molecules/Button/Button";
@@ -11,7 +12,8 @@ import './LoginForm.scss';
 
 export default function LoginForm() {
 
-  const { formData, updateFormValue, handleFormAction } = useLoginForm();
+  const { updateFormValue, handleFormAction } = useLoginForm();
+  const { setShowFlashMessage } = useFlashMessageContext();
 
   return (
     <div className="login-form">
@@ -39,6 +41,7 @@ export default function LoginForm() {
         <LinkButton
           className='login-form__create-new-button'
           label='アカウント新規作成'
+          handleClick={() => setShowFlashMessage(false)}
         />
       </Link>
     </div>
