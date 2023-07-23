@@ -9,8 +9,10 @@
 @use '../../components/molecules/InputBox/InputBox.scss';
 
 // organisms
+@use '../../components/organisms/Header/Header.scss';
+@use '../../components/organisms/LoginForm/LoginForm.scss';
+@use '../../components/organisms/SignupForm/SignupForm.scss';
 
 
 // templates
-@use '../../components/templates/LoginTemplate/LoginTemplate.scss';
-@use '../../components/templates/SignupTemplate/SignupTemplate.scss';
+@use '../../components/templates/AuthorizationTemplate/AuthorizationTemplate.scss'
