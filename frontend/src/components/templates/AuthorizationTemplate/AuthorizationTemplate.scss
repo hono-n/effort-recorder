@@ -3,6 +3,7 @@
 .authorization {
   display: flex;
   flex-direction: row;
+  position: relative;
 
   &__back-ground {
     background-color: $primary-color-90;

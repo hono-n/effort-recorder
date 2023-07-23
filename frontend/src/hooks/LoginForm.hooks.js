@@ -29,8 +29,13 @@ export default function useLoginForm() {
       if (response.data.logged_in) {
         auth.login(response.data.user.user_name, () => { navigate("/dashboard") });
       }
+      else{
+        // Rails側で @user&.authenticate の実行に失敗した場合
+        console.log(response.data);
+      }
     }).catch(error => {
-      console.log('login error', error)
+      // Rails側が応答できなかった場合（サーバーが落ちているなど）
+      console.log('【React】Railsで何か問題があるようです', error);
     });
     event.preventDefault();
   }

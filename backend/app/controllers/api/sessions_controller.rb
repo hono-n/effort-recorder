@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
       login!
       render json: { logged_in: true, user: @user }
     else
-      render json: { status: 401, errors: ['認証に失敗しました'] }
+      render json: { status: 401, errors: ['【Rails】 authenticateメソッドの実行に失敗'] }
     end
   end
 
