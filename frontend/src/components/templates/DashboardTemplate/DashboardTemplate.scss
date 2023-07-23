@@ -1,7 +1,9 @@
 @use '../../../assets/styles/_global-style.scss' as *;
 
 .dashboard {
+
   &__content {
+    position: absolute;
     width: 100vw;
     height: calc(100vh - 64px);
     background-color: $gray-scale-20;
