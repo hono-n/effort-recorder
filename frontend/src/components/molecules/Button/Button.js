@@ -23,6 +23,7 @@ export default function Button({
       onClick={handleClick}
       style={style}
       type={type}
+      disabled={state === 'disabled'}
     >
       {label}
     </button>
