@@ -13,7 +13,7 @@ class Api::SessionsController < ApplicationController
     if current_user
       render json: { logged_in: true, user: @current_user }
     else
-      render json: { logged_in: false, message: 'ログインしていません' }
+      render json: { logged_in: false, message: '【Rails】ログインしていません' }
     end
   end
 

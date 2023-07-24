@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import useLoginForm from "../../../hooks/LoginForm.hooks";
 import { useFlashMessageContext } from "../../../contexts/FlashMessageContext";
@@ -14,6 +14,13 @@ export default function LoginForm() {
 
   const { updateFormValue, handleFormAction } = useLoginForm();
   const { setShowFlashMessage } = useFlashMessageContext();
+
+  const navigate = useNavigate();
+
+  function linkButtonAction() {
+    navigate("/signup");
+    setShowFlashMessage(false);
+  }
 
   return (
     <div className="login-form">
@@ -37,13 +44,11 @@ export default function LoginForm() {
           label='ログイン'
         />
       </form>
-      <Link to='/signup'>
-        <LinkButton
-          className='login-form__create-new-button'
-          label='アカウント新規作成'
-          handleClick={() => setShowFlashMessage(false)}
-        />
-      </Link>
+      <LinkButton
+        className='login-form__create-new-button'
+        label='アカウント新規作成'
+        handleClick={linkButtonAction}
+      />
     </div>
   )
 }

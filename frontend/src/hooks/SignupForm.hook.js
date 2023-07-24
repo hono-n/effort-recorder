@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useUpdateFormValue } from "./FormHandler.hook";
 import { useAuth } from "../contexts/AuthContext";
 import { useSignupErrorHandler } from "./ErrorHandler.hook";
+import { useFlashMessageContext } from "../contexts/FlashMessageContext";
 
 
 // 情報を所有するコンポーネントは SignupForm.js
@@ -24,12 +25,13 @@ export default function useSignupForm() {
   const initialValue = signupErrorHandler.initialValue;
 
   const [errors, setErrors] = useState(initialValue);
-  const {validate} = useSignupErrorHandler();
+  const { validate } = useSignupErrorHandler();
   const updateFormData = useUpdateFormValue({
     formData: formData,
     setFormData: setFormData,
   });
 
+  const { setShowFlashMessage, setFlashMessage } = useFlashMessageContext();
 
   const handleCreateAccount = (event) => {
     axios.post('http://localhost:3001/api/users',
@@ -43,15 +45,30 @@ export default function useSignupForm() {
       { withCredentials: true }
     ).then(response => {
       if (response.data.status === 'created') {
+        setShowFlashMessage(true);
+        setFlashMessage({ type: 'success', message: 'アカウントを作成しました' });
         auth.login(response.data.user.user_name, () => { navigate("/dashboard") });
       }
+      else {
+        setShowFlashMessage(true);
+        // Rails側で Userモデルのレコード追加に失敗した場合
+        if (response.data.errors.user_name.map(err => err === 'has already been taken')) {
+        setFlashMessage({ type: 'error', message: '同一のユーザー名が既に存在します。別の値を設定してください' });
+        }
+        else{
+          setFlashMessage({ type: 'error', message: 'ユーザーの作成に失敗しました' });
+        }
+      }
     }).catch(error => {
-      console.log('error', error)
+      // Rails側が応答できなかった場合（サーバーが落ちているなど）
+      console.log('【React】Railsで何か問題があるようです', error);
+      setShowFlashMessage(true);
+      setFlashMessage({ type: 'error', message: '予期せぬエラーが発生しました。再度お試しください' });
     });
     event.preventDefault();
   }
 
-  function handleInputValue (fieldName, inputValue) {
+  function handleInputValue(fieldName, inputValue) {
 
     // (1) ユーザーの入力値を反映してformDataを更新（setFormDataが実行される）
     const newFormData = updateFormData(fieldName, inputValue);

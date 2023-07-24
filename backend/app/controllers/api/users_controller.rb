@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
       login!
       render json: { status: :created, user: @user }
     else
-      render json: { status: 500, errors: ['failed to create user'] }
+      render json: { status: 500, errors: @user.errors }
     end
   end
 

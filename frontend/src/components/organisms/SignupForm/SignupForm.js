@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import useSignupForm from "../../../hooks/SignupForm.hook";
 import { useFlashMessageContext } from "../../../contexts/FlashMessageContext";
@@ -14,6 +14,13 @@ export default function SignupForm() {
 
   const { formData, errors, handleInputValue, handleFormAction } = useSignupForm();
   const { setShowFlashMessage } = useFlashMessageContext();
+
+  const navigate = useNavigate();
+
+  function linkButtonAction() {
+    navigate("/login");
+    setShowFlashMessage(false);
+  }
 
   const hasEmptyField =
     formData.userName.length === 0
@@ -69,13 +76,11 @@ export default function SignupForm() {
           state={hasEmptyField || hasError ? 'disabled' : 'active'}
         />
       </form>
-      <Link to='/login'>
-        <LinkButton
+      <LinkButton
           className='signup-form__signup-to-login-button'
           label='ログイン画面へ戻る'
-          handleClick={() => setShowFlashMessage(false)}
+          handleClick={linkButtonAction}
         />
-      </Link>
     </div>
   )
 }
