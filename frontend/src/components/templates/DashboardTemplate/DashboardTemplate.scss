@@ -4,11 +4,20 @@
 
   &__content {
     position: absolute;
+  }
+
+  &__content-wrapper {
     width: 100vw;
     height: calc(100vh - 64px);
     background-color: $gray-scale-20;
-
     display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  &__project-list-container {
+    background-color: $gray-scale-00;
+    width: 320px;
   }
 
   &__selected-project {
@@ -16,16 +25,4 @@
     gap: 24px;
     padding: 24px;
   }
-
-  // &__summary {
-  //   background-color: $gray-scale-00;
-  //   border-radius: 12px;
-  //   width: 310px;
-  // }
-
-  // &__history {
-  //   background-color: $gray-scale-00;
-  //   border-radius: 12px;
-  //   width: calc(100vw - 702px);
-  // }
 }

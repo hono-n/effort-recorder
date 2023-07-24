@@ -3,10 +3,18 @@ import cn from "classnames";
 
 import './ProjectListItem.scss';
 
-export default function ProjectListItem() {
+export default function ProjectListItem({
+  state,
+  label,
+  handleClick
+}) {
 
+  const projectListItemClass = {
+    'project-list-item': true,
+    'project-list-item--normal': state === 'normal',
+    'project-list-item--selected': state === 'selected'
+  }
   return (
-    <div className="project-list-item">
-    </div>
+    <button className={cn(projectListItemClass)} onClick={handleClick}>{label}</button>
   )
 }

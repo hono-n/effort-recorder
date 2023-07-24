@@ -1,8 +1,23 @@
 @use '../../../assets/styles/_global-style.scss' as *;
 
 .project-list-item {
+  box-sizing: border-box;
   width: 256px;
-  height: 48px;
+  height: 40px;
   border-radius: 12px;
-  border: 1px solid #333333;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  @include text-label;
+
+
+  &--normal {
+    border: 1.5px solid $gray-scale-20;
+    background-color: $gray-scale-00;
+  }
+
+  &--selected {
+    border: 1.5px solid $primary-color-70;
+    background-color: $primary-color-10;
+  }
 }

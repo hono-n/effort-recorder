@@ -22,10 +22,14 @@ export default function DashboardTemplate() {
         {showFlashMessage &&
           <FlashMessage type={flashMessage.type} message={flashMessage.message} />
         }
-        <ProjectList />
-        <div className="dashboard__selected-project">
-          <ProjectSummary />
-          <ProjectHistory />
+        <div className='dashboard__content-wrapper'>
+          <div className="dashboard__project-list-container">
+            <ProjectList />
+          </div>
+          <div className="dashboard__selected-project">
+            <ProjectSummary projectName='英語' total='4時間24分' />
+            <ProjectHistory />
+          </div>
         </div>
       </div>
     </div>
