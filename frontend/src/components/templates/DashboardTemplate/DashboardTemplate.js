@@ -4,9 +4,7 @@ import Header from '../../organisms/Header/Header';
 import ProjectList from "../../organisms/ProjectList/ProjectList";
 import ProjectSummary from "../../organisms/ProjectSummary/ProjectSummary";
 import ProjectHistory from "../../organisms/ProjectHistory/ProjectHistory";
-
 import FlashMessage from "../../molecules/FlashMessage/FlashMessage";
-
 
 import './DashboardTemplate.scss';
 
@@ -23,9 +21,7 @@ export default function DashboardTemplate() {
           <FlashMessage type={flashMessage.type} message={flashMessage.message} />
         }
         <div className='dashboard__content-wrapper'>
-          <div className="dashboard__project-list-container">
-            <ProjectList />
-          </div>
+          <ProjectList />
           <div className="dashboard__selected-project">
             <ProjectSummary projectName='英語' total='4時間24分' />
             <ProjectHistory />

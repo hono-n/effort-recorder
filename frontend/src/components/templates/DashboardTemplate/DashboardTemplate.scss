@@ -15,11 +15,6 @@
     align-items: stretch;
   }
 
-  &__project-list-container {
-    background-color: $gray-scale-00;
-    width: 320px;
-  }
-
   &__selected-project {
     display: flex;
     gap: 24px;
