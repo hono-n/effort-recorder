@@ -7,5 +7,25 @@
     width: 100vw;
     height: calc(100vh - 64px);
     background-color: $gray-scale-20;
+
+    display: flex;
   }
+
+  &__selected-project {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  // &__summary {
+  //   background-color: $gray-scale-00;
+  //   border-radius: 12px;
+  //   width: 310px;
+  // }
+
+  // &__history {
+  //   background-color: $gray-scale-00;
+  //   border-radius: 12px;
+  //   width: calc(100vw - 702px);
+  // }
 }

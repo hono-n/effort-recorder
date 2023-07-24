@@ -1,0 +1,8 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.project-list-item {
+  width: 256px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #333333;
+}

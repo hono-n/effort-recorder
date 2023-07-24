@@ -1,0 +1,7 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.project-history {
+  background-color: $gray-scale-00;
+  border-radius: 12px;
+  width: calc(100vw - 702px);
+}
