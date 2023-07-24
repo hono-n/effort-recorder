@@ -11,7 +11,7 @@ export default function ProjectList() {
   for (let i = 1; i <= 10; i++) {
     projectObj.push({ id: i, projectName: `プロジェクト${i}`, state: 'normal' });
   }
-  projectObj[3].state = 'selected';
+  projectObj[2].state = 'selected';
   console.log(projectObj);
 
   return (
