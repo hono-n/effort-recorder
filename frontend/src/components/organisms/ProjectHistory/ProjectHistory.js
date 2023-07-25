@@ -13,37 +13,40 @@ export default function ProjectHistory() {
 
   return (
     <div className="project-history">
-      <div className="project-history__selected-month">2023/07</div>
-      <div className="project-history__items-wrapper">
-        <div className="project-history__items-container">
-
-          <ProjectHistoryItem
-            date='07/25（火）'
-            start_timestamp={d3}
-            end_timestamp={d4}
-            total={(d2 - d1) + (d4 - d3)}
-            memo='フレックスボックスのコツがなんとなく掴めてきたような気がするのである' />
-          <ProjectHistoryItem
-            start_timestamp={d3}
-            end_timestamp={d4} />
-          <ProjectHistoryItem
-            date='07/25（火）'
-            start_timestamp={d3}
-            end_timestamp={d4}
-            total={(d2 - d1) + (d4 - d3)}
-            memo='参考書一冊完了' />
-          <ProjectHistoryItem
-
-            start_timestamp={d3}
-            end_timestamp={d4}
-            total={(d2 - d1) + (d4 - d3)}
-            memo='参考書一冊完了' />
-          <ProjectHistoryItem
-            date='07/25（火）'
-            start_timestamp={d3}
-            end_timestamp={d4} />
+        <div className="project-history__month">
+          <p className="project-history__month-text"> 2023/07</p>
         </div>
-      </div>
+        <div className="project-history__items-wrapper">
+          <div className="project-history__items-container">
+
+            <ProjectHistoryItem
+              date='07/25（火）'
+              start_timestamp={d3}
+              end_timestamp={d4}
+              total={(d2 - d1) + (d4 - d3)}
+              memo='フレックスボックスのコツがなんとなく掴めてきたような気がするのである' />
+            <ProjectHistoryItem
+              start_timestamp={d3}
+              end_timestamp={d4} />
+            <ProjectHistoryItem
+              date='07/25（火）'
+              start_timestamp={d3}
+              end_timestamp={d4}
+              total={(d2 - d1) + (d4 - d3)}
+              memo='参考書一冊完了' />
+            <ProjectHistoryItem
+              start_timestamp={d3}
+              end_timestamp={d4}
+              total={(d2 - d1) + (d4 - d3)}
+              memo='参考書一冊完了' />
+            <ProjectHistoryItem
+              date='07/25（火）'
+              start_timestamp={d3}
+              end_timestamp={d4}
+              total={(d2 - d1) + (d4 - d3)}
+              memo='参考書一冊完了' />
+          </div>
+        </div>
     </div>
   )
 }
@@ -53,7 +56,6 @@ const sampleData = [
     id: 1,
     start_timestamp: 1690252641901,
     end_timestamp: 1690252902370,
-    cumulative_sum: 1200000,
     memo: 'Reactのカスタムフックの使い方がわかった'
   },
 ];
