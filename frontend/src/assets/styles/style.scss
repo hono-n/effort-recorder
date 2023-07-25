@@ -3,16 +3,27 @@
 
 // atoms
 @use '../../components/atoms/InputBoxBase/InputBoxBase.scss';
+@use '../../components/atoms/ProjectListItem/ProjectListItem.scss';
+@use '../../components/atoms/ProjectHistoryRecord/ProjectHistoryRecord.scss';
+@use '../../components/atoms/ProjectHistoryMemo/ProjectHistoryMemo.scss';
+@use '../../components/atoms/SubMenuItem/SubMenuItem.scss';
 
 // molecules
 @use '../../components/molecules/Button/Button.scss';
 @use '../../components/molecules/InputBox/InputBox.scss';
+@use '../../components/molecules/FlashMessage/FlashMessage.scss';
+@use '../../components/molecules/LinkButton/LinkButton.scss';
+@use '../../components/molecules/ProjectHistoryItem/ProjectHistoryItem.scss';
 
 // organisms
 @use '../../components/organisms/Header/Header.scss';
 @use '../../components/organisms/LoginForm/LoginForm.scss';
 @use '../../components/organisms/SignupForm/SignupForm.scss';
+@use '../../components/organisms/ProjectList/ProjectList.scss';
+@use '../../components/organisms/ProjectSummary/ProjectSummary.scss';
+@use '../../components/organisms/ProjectHistory/ProjectHistory.scss';
 
 
 // templates
-@use '../../components/templates/AuthorizationTemplate/AuthorizationTemplate.scss'
+@use '../../components/templates/AuthorizationTemplate/AuthorizationTemplate.scss';
+@use '../../components/templates/DashboardTemplate/DashboardTemplate.scss';

@@ -9,9 +9,31 @@
   flex-direction: column;
   align-items: center;
 
+  &__sections-wrapper {
+    width: 100%;
+    height: 100%;
+    // background-color: aqua;
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__section-per-month {
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+  }
 
   &__month {
-    margin-top: 36px;
+
+    :first-child {
+      margin-top: 36px;
+    }
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -30,7 +52,7 @@
   }
 
   &__items-container {
-    padding: 24px;
+    padding: 6px 24px;
     width: fit-content;
     margin: 0 auto;
     // background-color: blueviolet;
