@@ -27,7 +27,9 @@ function ProjectHistorySection() {
   return (
     <div className="project-history__section-per-month">
       <div className="project-history__month">
+        <div className="project-history__month-decorator"></div>
         <p className="project-history__month-text"> 2023/07</p>
+        <div className="project-history__month-decorator"></div>
       </div>
       <div className="project-history__items-wrapper">
         <div className="project-history__items-container">
