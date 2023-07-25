@@ -1,0 +1,60 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.modal {
+  &__overlay {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(60, 56, 56, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__window {
+    z-index: 4;
+    width: 480px;
+    background-color: $gray-scale-00;
+    height: fit-content;
+    max-height: 600px;
+    border-radius: 12px;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__close-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  &__close-button {
+    border: none;
+    outline: none;
+    background-color: $gray-scale-00;
+    @include header2;
+    color: $gray-scale-50;
+  }
+
+  &__content-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+  }
+
+  // 
+  &__content {
+    width: calc(100% - 48px);
+    height: 100px;
+    margin-bottom: 24px;
+    background-color: aqua;
+  }
+}
