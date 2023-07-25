@@ -18,25 +18,17 @@
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: #DEFBE6;
+    // background-color: aqua;
   }
 
   &__items-container {
-    padding: 32px;
-    width: max-content;
-    background-color: #f7f3f2;
+    padding: 24px;
+    width: fit-content;
+    margin: 0 auto;
+    // background-color: blueviolet;
 
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    align-items: flex-start;
-  }
-
-
-  &__item {
-    // 仮
-    width: 600px;
-    height: 80px;
-    background-color: #cac5c4;
+    gap: 8px;
   }
 }

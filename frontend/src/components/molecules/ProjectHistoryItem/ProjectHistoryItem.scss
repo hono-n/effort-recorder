@@ -2,9 +2,23 @@
 
 .project-history-item {
 
+  width: 100%;
+
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 16px;
-  margin-top: 12px;
+
+  &__date-container {
+    flex-shrink: 0;
+    width: 88px;
+  }
+
+  &__date {
+    @include text-caption;
+    display: block;
+    width: 88px;
+    text-align: center;
+  }
 }

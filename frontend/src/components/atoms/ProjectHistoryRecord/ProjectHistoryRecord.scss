@@ -1,0 +1,27 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.project-history-record {
+  min-width: 200px;
+  height: 40px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  background-color: $gray-scale-10;
+  border-radius: 6px;
+
+  &__duration {
+    @include text-label;
+    width: 56px;
+    text-align: center;
+  }
+
+  &__time {
+    @include text-regular;
+    width: 100px;
+    text-align: center;
+  }
+}
