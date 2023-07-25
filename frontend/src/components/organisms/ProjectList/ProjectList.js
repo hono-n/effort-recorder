@@ -12,7 +12,6 @@ export default function ProjectList() {
     projectObj.push({ id: i, projectName: `プロジェクト${i}`, state: 'normal' });
   }
   projectObj[2].state = 'selected';
-  console.log(projectObj);
 
   return (
     <div className="project-list">

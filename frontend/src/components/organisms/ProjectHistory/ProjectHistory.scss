@@ -1,25 +1,42 @@
 @use '../../../assets/styles/_global-style.scss' as *;
 
 .project-history {
-  background-color: $gray-scale-00;
-  height: 100%;
   width: calc(100vw - 702px);
+  background-color: $gray-scale-00;
   border-radius: 12px;
 
-  &__items-container {
-    height: 100%;
-    overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__selected-month {
+    margin-top: 24px;
+    @include header3;
   }
 
-  &__items {
-    margin: 24px auto;
+  &__items-wrapper {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #DEFBE6;
+  }
+
+  &__items-container {
+    padding: 32px;
+    width: max-content;
+    background-color: #f7f3f2;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    gap: 24px;
+    align-items: flex-start;
+  }
 
-    li {
-      list-style: none;
-    }
+
+  &__item {
+    // 仮
+    width: 600px;
+    height: 80px;
+    background-color: #cac5c4;
   }
 }

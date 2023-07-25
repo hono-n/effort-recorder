@@ -16,6 +16,7 @@
   }
 
   &__selected-project {
+    height: calc(100vh - 112px);
     display: flex;
     gap: 24px;
     padding: 24px;
