@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
             logout();
           }
         }).catch(error => {
-          console.log('login error', error)
+          console.log('【React】Railsで何か問題があるようです', error);
         })
       setIsLoading(false);
     };

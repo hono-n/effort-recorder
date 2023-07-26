@@ -48,7 +48,7 @@ function ProjectHistorySection() {
             start_timestamp={d3}
             end_timestamp={d4}
             total={(d2 - d1) + (d4 - d3)}
-            memo='参考書一冊完了' />
+            memo='フレックスボックスのコツがなんとなく掴めてきたような気がするのである' />
         </div>
       </div>
     </div>
