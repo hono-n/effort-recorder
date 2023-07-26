@@ -1,6 +1,4 @@
 class Api::UsersController < ApplicationController
-  def show; end
-
   def create
     @user = User.new(user_params)
 
@@ -11,10 +9,6 @@ class Api::UsersController < ApplicationController
       render json: { status: 500, errors: @user.errors }
     end
   end
-
-  def update; end
-
-  def destroy; end
 
   private
 
