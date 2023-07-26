@@ -12,14 +12,14 @@ import Modal from "../../molecules/Modal/Modal";
 
 export default function DashboardTemplate() {
 
-  const { showFlashMessage, flashMessage } = useFlashMessageContext();
+  const { showFlashMessage, setShowFlashMessage, flashMessage } = useFlashMessageContext();
 
   return (
     <div className='dashboard'>
       <Header />
       <div className='dashboard__content'>
         {showFlashMessage &&
-          <FlashMessage type={flashMessage.type} message={flashMessage.message} />
+          <FlashMessage type={flashMessage.type} message={flashMessage.message} handleClick={() => setShowFlashMessage(false)} />
         }
         <div className='dashboard__content-wrapper'>
           <ProjectList />
