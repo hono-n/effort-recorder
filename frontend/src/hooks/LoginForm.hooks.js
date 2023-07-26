@@ -31,7 +31,7 @@ export default function useLoginForm() {
     ).then(response => {
       if (response.data.logged_in) {
         setShowFlashMessage(false);
-        auth.login(response.data.user.user_name, () => { navigate("/dashboard") });
+        auth.login(response.data.user, () => { navigate("/dashboard") });
       }
       else {
         // Rails側で @user&.authenticate の実行に失敗した場合

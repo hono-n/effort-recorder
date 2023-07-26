@@ -54,7 +54,7 @@ function UserProfileSubMenu() {
   return (
     <div className="sub-menu">
       <div className="sub-menu__container">
-        <div className="sub-menu__user_name">{auth.user}</div>
+        <div className="sub-menu__user_name">{auth.user.user_name}</div>
         <div className="sub-menu__separator"></div>
         <ul className="sub-menu__menu-items-container">
           {list_menus}

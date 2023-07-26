@@ -7,7 +7,7 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
 
   const [loginStatus, setLoginStatus] = useState(false);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
       await axios.get('http://localhost:3001/api/session', { withCredentials: true })
         .then(response => {
           if (response.data.logged_in && !loginStatus) {
-            login(response.data.user.user_name, () => { navigate("/dashboard") });
+            login(response.data.user, () => { navigate("/dashboard") });
           }
           else if (!response.data.logged_in && loginStatus) {
             logout();

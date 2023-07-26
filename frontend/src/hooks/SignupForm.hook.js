@@ -47,7 +47,7 @@ export default function useSignupForm() {
       if (response.data.status === 'created') {
         setShowFlashMessage(true);
         setFlashMessage({ type: 'success', message: 'アカウントを作成しました' });
-        auth.login(response.data.user.user_name, () => { navigate("/dashboard") });
+        auth.login(response.data.user, () => { navigate("/dashboard") });
       }
       else {
         setShowFlashMessage(true);
