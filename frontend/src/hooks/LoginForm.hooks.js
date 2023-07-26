@@ -6,7 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useUpdateFormValue } from "./FormHandler.hook";
 import { useFlashMessageContext } from "../contexts/FlashMessageContext";
 
-// 情報を所有するコンポーネントは LoginForm.js
+// formData を所有するコンポーネントは LoginForm.js
 export default function useLoginForm() {
 
   const auth = useAuth();

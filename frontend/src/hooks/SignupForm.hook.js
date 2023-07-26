@@ -8,7 +8,7 @@ import { useSignupErrorHandler } from "./ErrorHandler.hook";
 import { useFlashMessageContext } from "../contexts/FlashMessageContext";
 
 
-// 情報を所有するコンポーネントは SignupForm.js
+// formData を所有するコンポーネントは SignupForm.js
 export default function useSignupForm() {
 
   const auth = useAuth();

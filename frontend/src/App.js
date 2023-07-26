@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import { FlashMessageProvider } from './contexts/FlashMessageContext';
 import { RequireAuth, useAuth } from './contexts/AuthContext';
 
 import Dashboard from './pages/Dashboard';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import { FlashMessageProvider } from './contexts/FlashMessageContext';
+
 
 
 function App() {

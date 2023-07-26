@@ -7,8 +7,6 @@ import ProjectHistory from "../../organisms/ProjectHistory/ProjectHistory";
 import FlashMessage from "../../molecules/FlashMessage/FlashMessage";
 
 import './DashboardTemplate.scss';
-import Modal from "../../molecules/Modal/Modal";
-
 
 export default function DashboardTemplate() {
 
@@ -26,7 +24,6 @@ export default function DashboardTemplate() {
           <div className="dashboard__selected-project">
             <ProjectSummary projectName='英語' total='4時間24分' />
             <ProjectHistory />
-            {/* <Modal /> */}
           </div>
         </div>
       </div>
