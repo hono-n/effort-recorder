@@ -5,4 +5,19 @@ class Api::ProjectsController < ApplicationController
     @projects = @user.projects
     render json: { status: :ok, projects: @projects }
   end
+
+  def create
+    @user = User.find(params[:user_id])
+    @project = @user.projects.new(project_params)
+
+    if @project.save
+      render json: { status: :created, project: @project }
+    else
+      render json: { status: 500, errors: @project.errors }
+    end
+  end
+
+  def project_params
+    params.require(:project).permit(:name, :user_id)
+  end
 end
