@@ -12,7 +12,7 @@ export function useProjectList() {
 
   const { user } = useAuth();
   const { setShowFlashMessage, setFlashMessage } = useFlashMessageContext();
-  const { projects, setProjects } = useProjectContext();
+  const { projects, setProjects, selectedProjectId, setSelectedProjectId } = useProjectContext();
 
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -57,6 +57,7 @@ export function useProjectList() {
         setShowModal(false);
         setShowFlashMessage(true);
         setFlashMessage({ type: 'success', message: 'プロジェクトを作成しました' });
+        handleLoad();
       }
       else {
         setShowFlashMessage(true);
@@ -75,10 +76,12 @@ export function useProjectList() {
 
   const projectList = {
     formData: formData,
-    isLoading,
-    projects,
-    showModal,
-    setShowModal,
+    isLoading: isLoading,
+    projects: projects,
+    selectedProjectId: selectedProjectId,
+    setSelectedProjectId: setSelectedProjectId,
+    showModal: showModal,
+    setShowModal: setShowModal,
     handleLoad: handleLoad,
     handleFormAction: handleCreateProject,
     handleInputValue: handleInputValue,

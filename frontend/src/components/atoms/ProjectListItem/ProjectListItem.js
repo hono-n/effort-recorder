@@ -15,6 +15,8 @@ export default function ProjectListItem({
     'project-list-item--selected': state === 'selected'
   }
   return (
-    <button className={cn(projectListItemClass)} onClick={handleClick}>{label}</button>
+    <button className={cn(projectListItemClass)} onClick={handleClick}>
+      {label}
+    </button>
   )
 }

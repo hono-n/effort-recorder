@@ -11,8 +11,11 @@ import './ProjectList.scss';
 
 
 export default function ProjectList() {
+
   const {
     projects,
+    selectedProjectId,
+    setSelectedProjectId,
     isLoading,
     showModal,
     setShowModal,
@@ -23,8 +26,9 @@ export default function ProjectList() {
 
 
   useEffect(() => {
+    console.log('エフェクトが呼ばれた')
     handleLoad();
-  }, [projects]);
+  }, []);
 
   return (
     <div className="project-list">
@@ -51,7 +55,11 @@ export default function ProjectList() {
             :
             projects.map(project =>
               <li key={project.id}>
-                <ProjectListItem state='normal' label={project.name} />
+                <ProjectListItem
+                  state={selectedProjectId === project.id ? 'selected' : 'normal'}
+                  label={project.name}
+                  handleClick={() => setSelectedProjectId(project.id)}
+                />
               </li>
             )}
         </div>
