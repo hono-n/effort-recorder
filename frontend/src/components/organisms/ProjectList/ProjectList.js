@@ -23,7 +23,12 @@ export default function ProjectList() {
     handleFormAction,
     handleInputValue,
   }
-    = useProjectList({ setProjects: setProjects });
+    = useProjectList({
+      projects: projects,
+      setProjects: setProjects,
+      selectedProjectId: selectedProjectId,
+      setSelectedProjectId: selectedProjectId
+    });
 
 
   useEffect(() => {
