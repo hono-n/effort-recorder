@@ -15,11 +15,8 @@ export default function ProjectSummary({
   const selectedProjectObj = projects?.filter(project => project.id === selectedProjectId)[0];
 
   const {
-    isLoading,
     showModal,
     setShowModal,
-    modalContentId,
-    setModalContentId,
     recordTime,
     setRecordTime,
     handleLoad,
@@ -32,10 +29,10 @@ export default function ProjectSummary({
     <div className="project-summary">
       {showModal &&
         <RecordModal
-          modalContentId={modalContentId}
           selectedProjectObj={selectedProjectObj}
           setShowModal={setShowModal}
-          setModalContentId={setModalContentId}
+          recordTime={recordTime}
+          setRecordTime={setRecordTime}
         />
       }
       <h2 className="project-summary__title">{selectedProjectObj?.name}</h2>

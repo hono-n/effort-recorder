@@ -6,7 +6,14 @@ import Button from "../../molecules/Button/Button";
 
 import './RecordModal.scss'
 
-export default function RecordModal({modalContentId, selectedProjectObj, setShowModal, setModalContentId}) {
+export default function RecordModal({
+  selectedProjectObj,
+  setShowModal,
+  recordTime,
+  setRecordTime,
+}) {
+
+  const [modalContentId, setModalContentId] = useState(1);
 
   if (modalContentId === 1) {
     return (
@@ -30,6 +37,8 @@ export default function RecordModal({modalContentId, selectedProjectObj, setShow
           <ModalContentRecording
             projectName={selectedProjectObj?.name}
             closeModal={() => setShowModal(false)}
+            recordTime={recordTime}
+            setRecordTime={setRecordTime}
           />}
         handleClick={() => setShowModal(false)}
       />
@@ -71,13 +80,16 @@ function ModalContentInitial({ projectName, handleClick }) {
 }
 
 
-function ModalContentRecording({ projectName, handleFormAction, handleInputValue }) {
+function ModalContentRecording({ projectName, handleFormAction, setRecordTime, recordTime }) {
 
-  console.log('ModalContentRecordingがよばれました');
+  useEffect(() => {
+    setRecordTime({ startTime: '17:00', endTime: '' });
+  }, []);
 
   return (
     <form onSubmit={handleFormAction}>
       <div className="modal-content">
+        <p>{recordTime.startTime}</p>
         <div className="modal-content__project-name-container">
           <label className="modal-content__project-name-label">プロジェクト名</label>
           <p className="modal-content__project-name">{projectName}</p>
