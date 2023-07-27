@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './ProjectSummary.scss';
 
-import Modal from "../../molecules/Modal/Modal";
+import RecordModal from "../RecordModal/RecordModal";
 import Button from "../../molecules/Button/Button";
 
 import { useProjectContext } from "../../../contexts/ProjectContext";
@@ -28,41 +28,15 @@ export default function ProjectSummary({
   }
     = useProjectSummary({ setProjects: setProjects });
 
-
-  function getModalContent(modalContentId) {
-    if (modalContentId === 1) {
-      return (
-        <Modal
-          title='作業時間を記録する'
-          children={
-            <ModalContentInitial
-              projectName={selectedProjectObj?.name}
-              closeModal={() => setShowModal(false)}
-              handleClick={() => setModalContentId(2)}
-            />
-          }
-          handleClick={() => setShowModal(false)} />
-      )
-    }
-    if (modalContentId === 2) {
-      return (
-        <Modal
-          title='作業時間を記録中...'
-          children={
-            <ModalContentRecording
-              projectName={selectedProjectObj?.name}
-              closeModal={() => setShowModal(false)}
-            />}
-          handleClick={() => setShowModal(false)}
-        />
-
-      )
-    }
-  }
-
   return (
     <div className="project-summary">
-      {showModal && getModalContent(modalContentId)
+      {showModal &&
+        <RecordModal
+          modalContentId={modalContentId}
+          selectedProjectObj={selectedProjectObj}
+          setShowModal={setShowModal}
+          setModalContentId={setModalContentId}
+        />
       }
       <h2 className="project-summary__title">{selectedProjectObj?.name}</h2>
       <h3 className="project-summary__header">トータル学習時間</h3>
@@ -74,58 +48,5 @@ export default function ProjectSummary({
         handleClick={() => setShowModal(true)}
       />
     </div>
-  )
-}
-
-function ModalContentInitial({ projectName, handleClick }) {
-
-  const [currentTime, setCurrentTime] = useState(null);
-
-  useEffect(() => {
-    setInterval(() => {
-      let time = new Date().toLocaleTimeString();
-      setCurrentTime(time);
-    }, 1000);
-  }, []);
-
-  return (
-    <div className="modal-content">
-      {currentTime ?
-        <p className="modal-content__current-time">{currentTime}</p>
-        :
-        <p className="modal-content__current-time-loading">現在時刻を取得中...</p>
-      }
-      <div className="modal-content__project-name-container">
-        <label className="modal-content__project-name-label">プロジェクト名</label>
-        <p className="modal-content__project-name">{projectName}</p>
-      </div>
-      <Button
-        className='modal-content__button'
-        type='submit'
-        label='記録を開始'
-        handleClick={handleClick}
-      />
-    </div>
-  )
-}
-
-
-function ModalContentRecording({ projectName, handleFormAction, handleInputValue }) {
-
-  console.log('ModalContentRecordingがよばれました');
-
-  return (
-    <form onSubmit={handleFormAction}>
-      <div className="modal-content">
-        <div className="modal-content__project-name-container">
-          <label className="modal-content__project-name-label">プロジェクト名</label>
-          <p className="modal-content__project-name">{projectName}</p>
-        </div>
-        <Button
-          className='modal-content__button'
-          type='submit'
-          label='記録を開始' />
-      </div>
-    </form>
   )
 }
