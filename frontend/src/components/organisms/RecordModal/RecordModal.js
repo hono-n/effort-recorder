@@ -22,7 +22,6 @@ export default function RecordModal({
         children={
           <ModalContentInitial
             projectName={selectedProjectObj?.name}
-            closeModal={() => setShowModal(false)}
             handleClick={() => setModalContentId(2)}
           />
         }
@@ -36,35 +35,33 @@ export default function RecordModal({
         children={
           <ModalContentRecording
             projectName={selectedProjectObj?.name}
-            closeModal={() => setShowModal(false)}
-            recordTime={recordTime}
-            setRecordTime={setRecordTime}
+            handleClick={() => setModalContentId(3)}
           />}
         handleClick={() => setShowModal(false)}
       />
-
+    )
+  }
+  if (modalContentId === 3) {
+    return (
+      <Modal
+        title='作業記録の保存'
+        children={
+          <ModalContentSubmit
+            projectName={selectedProjectObj?.name}
+            recordTime={recordTime}
+            setRecordTime={setRecordTime}
+            handleClick={() => setModalContentId(3)}
+          />}
+        handleClick={() => setShowModal(false)}
+      />
     )
   }
 }
 
 function ModalContentInitial({ projectName, handleClick }) {
 
-  const [currentTime, setCurrentTime] = useState(null);
-
-  useEffect(() => {
-    setInterval(() => {
-      let time = new Date().toLocaleTimeString();
-      setCurrentTime(time);
-    }, 1000);
-  }, []);
-
   return (
     <div className="modal-content">
-      {currentTime ?
-        <p className="modal-content__current-time">{currentTime}</p>
-        :
-        <p className="modal-content__current-time-loading">現在時刻を取得中...</p>
-      }
       <div className="modal-content__project-name-container">
         <label className="modal-content__project-name-label">プロジェクト名</label>
         <p className="modal-content__project-name">{projectName}</p>
@@ -80,24 +77,66 @@ function ModalContentInitial({ projectName, handleClick }) {
 }
 
 
-function ModalContentRecording({ projectName, handleFormAction, setRecordTime, recordTime }) {
+function ModalContentRecording({ projectName, handleClick }) {
+
+  const [currentTime, setCurrentTime] = useState(null);
+  const [passedMin, setPassedMin] = useState(null);
+  const [startTimeStamp, setStartTimeStamp] = useState(null);
 
   useEffect(() => {
-    setRecordTime({ startTime: '17:00', endTime: '' });
+    const startTime = new Date();
+    setStartTimeStamp(startTime.getTime());
+    setInterval(() => {
+      const current = new Date();
+      const time = current.toLocaleTimeString();
+      setCurrentTime(time);
+
+      const passed = Math.round((current - startTime) / (1000 * 60));
+      setPassedMin(passed);
+    }, 1000);
   }, []);
+
+  return (
+    <div className="modal-content">
+      <div className="modal-content__time-wrapper">
+        <p className="modal-content__current-time">
+          {currentTime ?
+            currentTime
+            :
+            new Date(startTimeStamp).toLocaleTimeString()
+          }
+        </p>
+        <p className="modal-content__passed-time">{passedMin}分経過</p>
+      </div>
+      <div className="modal-content__project-name-container">
+        <label className="modal-content__project-name-label">プロジェクト名</label>
+        <p className="modal-content__project-name">{projectName}</p>
+      </div>
+      <div className="modal-content__start-time-container">
+        <label className="modal-content__start-time-label">記録開始時刻</label>
+        {startTimeStamp && <p className="modal-content__start-time">{new Date(startTimeStamp).toLocaleTimeString()}</p>}
+      </div>
+      <Button
+        className='modal-content__button'
+        type='submit'
+        label='記録を終了'
+        handleClick={handleClick} ï
+      />
+    </div>
+  )
+}
+
+
+function ModalContentSubmit({ projectName, handleFormAction, setRecordTime, recordTime }) {
 
   return (
     <form onSubmit={handleFormAction}>
       <div className="modal-content">
-        <p>{recordTime.startTime}</p>
-        <div className="modal-content__project-name-container">
-          <label className="modal-content__project-name-label">プロジェクト名</label>
-          <p className="modal-content__project-name">{projectName}</p>
-        </div>
+
         <Button
           className='modal-content__button'
           type='submit'
-          label='記録を終了' />
+          label='記録を保存' />
       </div>
     </form>
   )
