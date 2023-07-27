@@ -1,5 +1,17 @@
 @use '../../../assets/styles/_global-style.scss' as *;
 
+@mixin container {
+  position: relative;
+  width: 320px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  padding: 4px 0 12px 0;
+  background-color: $gray-scale-10;
+}
+
 .modal-content {
   width: 400px;
   height: fit-content;
@@ -29,15 +41,7 @@
   }
 
   &__project-name-container {
-    position: relative;
-    width: 320px;
-    height: 72px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 6px;
-    padding: 4px 0 12px 0;
-    background-color: $gray-scale-10;
+    @include container();
   }
 
 
@@ -51,17 +55,8 @@
   }
 
   &__start-time-container {
-    position: relative;
-    width: 320px;
-    height: 72px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 6px;
-    padding: 4px 0 12px 0;
-    background-color: $gray-scale-10;
+    @include container();
   }
-
 
   &__start-time-label {
     margin-top: 12px;
@@ -73,4 +68,23 @@
     letter-spacing: 0.24rem;
     color: $primary-color-70;
   }
+
+  &__summary-container {
+    @include container();
+  }
+
+  &__summary-text {
+    @include header3();
+    letter-spacing: 0.24rem;
+    margin: 10px;
+  }
+
+  &__strong {
+    color: $primary-color-70;
+  }
+
+  &__input {
+    margin-top: 24px;
+  }
+
 }

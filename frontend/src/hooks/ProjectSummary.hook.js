@@ -6,7 +6,7 @@ import { useUpdateFormValue } from "./FormHandler.hook";
 export function useProjectSummary({ setProjects }) {
 
   const [showModal, setShowModal] = useState(false);
-  const [recordTime, setRecordTime] = useState({ startTime: '', endTIme: '' });
+  const [recordTime, setRecordTime] = useState(null);
   const [formData, setFormData] = useState({ projectName: '' });
 
   const updateFormData = useUpdateFormValue({
