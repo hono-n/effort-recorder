@@ -13,6 +13,8 @@
   &__title {
     @include header2;
     margin-top: 48px;
+    width: 240px;
+    text-align: center;
     flex-shrink: 0;
   }
 

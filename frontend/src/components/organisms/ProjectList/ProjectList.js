@@ -6,27 +6,27 @@ import Modal from "../../molecules/Modal/Modal";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
 import Button from "../../molecules/Button/Button";
 
+import { useProjectContext } from "../../../contexts/ProjectContext";
 import { useProjectList } from "../../../hooks/ProjectList.hook";
 import './ProjectList.scss';
 
 
 export default function ProjectList() {
 
+  const { projects, setProjects, selectedProjectId, setSelectedProjectId } = useProjectContext();
+
   const {
-    projects,
-    selectedProjectId,
-    setSelectedProjectId,
     isLoading,
     showModal,
     setShowModal,
     handleLoad,
     handleFormAction,
     handleInputValue,
-  } = useProjectList();
+  }
+    = useProjectList({ setProjects: setProjects });
 
 
   useEffect(() => {
-    console.log('エフェクトが呼ばれた')
     handleLoad();
   }, []);
 
