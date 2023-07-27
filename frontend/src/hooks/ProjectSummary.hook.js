@@ -10,6 +10,8 @@ export function useProjectSummary({ setProjects }) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [modalContentId, setModalContentId] = useState(1);
+  const [recordTime, setRecordTime] = useState({ startTime: '', endTIme: '' });
   const [formData, setFormData] = useState({ projectName: '' });
 
   const updateFormData = useUpdateFormValue({
@@ -27,6 +29,10 @@ export function useProjectSummary({ setProjects }) {
     isLoading: isLoading,
     showModal: showModal,
     setShowModal: setShowModal,
+    modalContentId: modalContentId,
+    setModalContentId: setModalContentId,
+    recordTime: recordTime,
+    setRecordTime: setRecordTime,
     // handleFormAction: handleCreateProject,
     handleInputValue: handleInputValue,
   };

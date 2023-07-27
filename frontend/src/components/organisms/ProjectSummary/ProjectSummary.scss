@@ -54,6 +54,11 @@
     letter-spacing: 0.24rem;
   }
 
+  &__current-time-loading {
+    @include text-label;
+    color: $primary-color-70;
+  }
+
   &__project-name-container {
     position: relative;
     width: 320px;
