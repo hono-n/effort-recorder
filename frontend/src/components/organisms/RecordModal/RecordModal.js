@@ -155,7 +155,7 @@ function ModalContentSubmit({ projectName, handleFormAction, recordTime }) {
                   className='modal-content__input'
         label='メモ（任意入力）'
         placeholder='メモを保存'
-        max_char={36}
+        max_char={50}
         />
         <Button
           className='modal-content__button'
