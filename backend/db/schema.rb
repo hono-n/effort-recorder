@@ -14,8 +14,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_015234) do
   create_table "histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
-    t.bigint "start_time_stapm", null: false
-    t.bigint "end_time_stapm", null: false
+    t.bigint "start_time_stamp", null: false
+    t.bigint "end_time_stamp", null: false
     t.bigint "total", null: false
     t.string "memo"
     t.datetime "created_at", null: false
