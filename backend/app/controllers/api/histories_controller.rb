@@ -3,7 +3,7 @@ class Api::HistoriesController < ApplicationController
     # ネストされたリソースにおける取得の仕方：params[:リソース名の単数系_id]
     @user = User.find(params[:user_id])
     @projects = @user.projects.find(params[:project_id])
-    @histories = @projects.histories
+    @histories = @projects.histories.order(id: :desc)
     render json: { status: :ok, projects: @histories }
   end
 

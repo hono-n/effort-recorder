@@ -1,4 +1,5 @@
 import { useFlashMessageContext } from "../../../contexts/FlashMessageContext";
+import { useProjectContext } from "../../../contexts/ProjectContext";
 
 import Header from '../../organisms/Header/Header';
 import ProjectList from "../../organisms/ProjectList/ProjectList";
@@ -11,6 +12,7 @@ import './DashboardTemplate.scss';
 export default function DashboardTemplate() {
 
   const { showFlashMessage, setShowFlashMessage, flashMessage } = useFlashMessageContext();
+  const { selectedProjectId } = useProjectContext();
 
   return (
     <div className='dashboard'>
@@ -21,10 +23,12 @@ export default function DashboardTemplate() {
         }
         <div className='dashboard__content-wrapper'>
           <ProjectList />
-          <div className="dashboard__selected-project">
-            <ProjectSummary projectName='英語' total='4時間24分' />
-            <ProjectHistory />
-          </div>
+          {selectedProjectId &&
+            <div className="dashboard__selected-project">
+              <ProjectSummary projectName='英語' total='4時間24分' />
+              <ProjectHistory />
+            </div>
+          }
         </div>
       </div>
     </div>
