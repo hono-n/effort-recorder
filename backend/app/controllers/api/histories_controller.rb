@@ -1,10 +1,15 @@
 class Api::HistoriesController < ApplicationController
   def index
-    # ネストされたリソースにおける取得の仕方：params[:リソース名の単数系_id]
     @user = User.find(params[:user_id])
     @projects = @user.projects.find(params[:project_id])
     @histories = @projects.histories.order(id: :desc)
-    render json: { status: :ok, projects: @histories }
+
+    target_month = @projects.histories.select(:target_month).group(:target_month).order(target_month: :desc)
+    target_month_array = target_month.map do |t|
+      t.target_month
+    end
+
+    render json: { status: :ok, month: target_month_array, projects: @histories }
   end
 
   # def create
