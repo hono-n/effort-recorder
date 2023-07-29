@@ -12,7 +12,7 @@ import ProjectHistoryItem from "../../molecules/ProjectHistoryItem/ProjectHistor
 export default function ProjectHistory() {
 
   const { user } = useAuth();
-  const { selectedProjectId } = useProjectContext();
+  const { selectedProjectId, setTotal } = useProjectContext();
   const { setFlashMessage, setShowFlashMessage } = useFlashMessageContext();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,6 +26,7 @@ export default function ProjectHistory() {
           if (response.data.status === 'ok') {
             setShowFlashMessage(false);
             setHistories(response.data.histories);
+            setTotal(response.data.total);
           } else {
             setShowFlashMessage(true);
             setFlashMessage({ type: 'error', message: 'データの取得に失敗しました' });

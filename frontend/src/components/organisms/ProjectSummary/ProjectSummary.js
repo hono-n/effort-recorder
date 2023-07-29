@@ -7,11 +7,9 @@ import Button from "../../molecules/Button/Button";
 import { useProjectContext } from "../../../contexts/ProjectContext";
 import { useProjectSummary } from "../../../hooks/ProjectSummary.hook";
 
-export default function ProjectSummary({
-  total
-}) {
+export default function ProjectSummary() {
 
-  const { projects, setProjects, selectedProjectId, setSelectedProjectId } = useProjectContext();
+  const { projects, setProjects, selectedProjectId, setSelectedProjectId, total } = useProjectContext();
   const selectedProjectObj = projects?.filter(project => project.id === selectedProjectId)[0];
 
   const {
@@ -25,6 +23,10 @@ export default function ProjectSummary({
   }
     = useProjectSummary({ setProjects: setProjects });
 
+    const totalMins = Math.round(total / (60 * 1000));
+    const totalHours = Math.floor(totalMins / 60);
+    const totalStr = `${totalHours}時間 ${(totalMins % 60).toString().padStart(2, '0')}分`
+
   return (
     <div className="project-summary">
       {showModal &&
@@ -37,7 +39,7 @@ export default function ProjectSummary({
       }
       <h2 className="project-summary__title">{selectedProjectObj?.name}</h2>
       <h3 className="project-summary__header">トータル学習時間</h3>
-      <p className="project-summary__total">{total}</p>
+      <p className="project-summary__total">{totalStr}</p>
       <Button
         className="project-summary__button"
         style={{ height: '64px', width: '240px', borderRadius: '12px' }}
