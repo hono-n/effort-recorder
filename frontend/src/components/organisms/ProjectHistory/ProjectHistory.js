@@ -63,17 +63,25 @@ export default function ProjectHistory() {
 function ProjectHistorySection({ targetMonth, dataArray }) {
 
   const dayMap = ['日', '月', '火', '水', '木', '金', '土'];
+  let previous_date = '';
 
   const getItemData = dataArray.map((value, idx) => {
     const startDate = new Date(value.start_timestamp);
+
     const totalMins = Math.round(value.total / (60 * 1000));
     const totalHours = Math.floor(totalMins / 60);
     const total = `${totalHours}時間 ${(totalMins % 60).toString().padStart(2, '0')}分`
 
+    const date = value.target_date;
+    const display_date = (date !== previous_date) ?
+      `${date}（${dayMap[startDate.getDay()]}）`
+      : undefined;
+    previous_date = date;
+
     return (
       <li key={idx}>
         <ProjectHistoryItem
-          date={`${value.target_date}（${dayMap[startDate.getDay()]}）`}
+          date={display_date}
           start_timestamp={value.start_timestamp}
           end_timestamp={value.end_timestamp}
           total={total}
