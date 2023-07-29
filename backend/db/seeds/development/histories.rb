@@ -22,6 +22,8 @@ user_ids.each do |user_id|
       target_date = time_obj.strftime('%m/%d')
       total += (end_timestamp - start_timestamp)
 
+      memo = (cnt % 6).zero? || (cnt % 10) == 1 ? "memo#{user.id}-#{project.id}-#{cnt}" : ''
+
       History.create(
         user_id: user.id,
         project_id: project.id,
@@ -30,7 +32,7 @@ user_ids.each do |user_id|
         start_timestamp:,
         end_timestamp:,
         total:,
-        memo: "memo#{user.id}-#{project.id}-#{cnt}"
+        memo:
       )
     end
   end

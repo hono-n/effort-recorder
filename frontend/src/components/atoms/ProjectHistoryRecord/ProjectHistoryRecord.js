@@ -13,7 +13,7 @@ export default function ProjectHistoryRecord({ start_timestamp, end_timestamp })
     <div className="project-history-record">
       <p className="project-history-record__duration">{duration}分</p>
       <div className="project-history-record__time-container">
-        <p className="project-history-record__time">{start_hour}:{start_min}~{end_hour}:{end_min}</p>
+        <p className="project-history-record__time">{start_hour} : {start_min} - {end_hour} : {end_min}</p>
       </div>
     </div>
   )
