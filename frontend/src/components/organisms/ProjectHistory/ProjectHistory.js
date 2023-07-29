@@ -25,8 +25,7 @@ export default function ProjectHistory() {
         .then(response => {
           if (response.data.status === 'ok') {
             setShowFlashMessage(false);
-            setHistories(response.data.projects);
-            console.log(response.data.projects);
+            setHistories(response.data.histories);
           } else {
             setShowFlashMessage(true);
             setFlashMessage({ type: 'error', message: 'データの取得に失敗しました' });
@@ -39,108 +38,63 @@ export default function ProjectHistory() {
     };
 
     handleLoad();
-  }, []);
+  }, [selectedProjectId]);
 
-
-  const dayMap = ['日', '月', '火', '水', '木', '金', '土'];
-  let previousMonth = undefined;
-  let previousDate = undefined;
-
-  histories?.map((history) => {
-    const startTime = new Date(history.start_timestamp);
-    const startYear = startTime.getFullYear();
-    const startMonth = startTime.getMonth();
-    const startDate = startTime.getDate();
-    const startDay = dayMap[startTime.getDay()];
-    const startHour = startTime.getHours();
-    const startMin = startTime.getMinutes();
-
-    const endTime = new Date(history.end_timestamp);
-    const endHour = endTime.getHours();
-    const endMin = endTime.getMinutes();
-
-    const total = history.total;
-
-
-    function format(original) {
-      const formatted = original.toString().padStart(2, '0');
-      return formatted;
-    }
-    previousMonth ||= startMonth;
-    previousDate ||= startDate;
-
-    // 出力用に必要
-    const targetMonthStr = `${format(startYear)} / ${format(startMonth)}`;
-    const targetDateStr = `${format(startMonth)} / ${format(startDate)}（${startDay}）`;
-    const startTimeStr = `${format(startHour)}:${format(startMin)}`;
-    const endTimeStr = `${format(endHour)}:${format(endMin)}`;
-
-    console.log(targetDateStr);
-    console.log(`${startTimeStr}~${endTimeStr}`);
+  const sectionData = histories?.map((value, idx) => {
+    const targetMonth = Object.keys(value)[0];
+    const dataArray = value[targetMonth];
+    return (
+      <dd key={idx}>
+        <ProjectHistorySection targetMonth={targetMonth} dataArray={dataArray} />
+      </dd>
+    );
   }
   )
 
   return (
     <div className="project-history">
       <div className="project-history__sections-wrapper">
-        <ProjectHistorySection />
-        <ProjectHistorySection />
-        <ProjectHistorySection />
+        <dl>{sectionData}</dl>
       </div>
     </div>
   )
 }
 
+function ProjectHistorySection({ targetMonth, dataArray }) {
 
-const d1 = new Date('2023-07-25T08:44:00').getTime();
-const d2 = new Date('2023-07-25T12:02:00').getTime();
-const d3 = new Date('2023-07-24T09:12:00').getTime();
-const d4 = new Date('2023-07-24T09:18:36').getTime();
+  const dayMap = ['日', '月', '火', '水', '木', '金', '土'];
 
-function ProjectHistorySection() {
+  const getItemData = dataArray.map((value, idx) => {
+    const startDate = new Date(value.start_timestamp);
+    const totalMins = Math.round(value.total / (60 * 1000));
+    const totalHours = Math.floor(totalMins / 60);
+    const total = `${totalHours}時間 ${(totalMins % 60).toString().padStart(2, '0')}分`
+
+    return (
+      <li key={idx}>
+        <ProjectHistoryItem
+          date={`${value.target_date}（${dayMap[startDate.getDay()]}）`}
+          start_timestamp={value.start_timestamp}
+          end_timestamp={value.end_timestamp}
+          total={total}
+          memo={value.memo} />
+      </li>
+    );
+  });
+
+
   return (
     <div className="project-history__section-per-month">
       <div className="project-history__month">
         <div className="project-history__month-decorator"></div>
-        <p className="project-history__month-text"> 2023/07</p>
+        <p className="project-history__month-text">{targetMonth}</p>
         <div className="project-history__month-decorator"></div>
       </div>
       <div className="project-history__items-wrapper">
         <div className="project-history__items-container">
-
-          <ProjectHistoryItem
-            date='07/25（火）'
-            start_timestamp={d3}
-            end_timestamp={d4}
-            total={(d2 - d1) + (d4 - d3)}
-            memo='フレックスボックスのコツがなんとなく掴めてきたような気がするのである' />
-          <ProjectHistoryItem
-            start_timestamp={d3}
-            end_timestamp={d4} />
-          <ProjectHistoryItem
-            date='07/25（火）'
-            start_timestamp={d3}
-            end_timestamp={d4}
-            total={(d2 - d1) + (d4 - d3)}
-            memo='フレックスボックスのコツがなんとなく掴めてきたような気がするのである' />
+          {getItemData}
         </div>
       </div>
     </div>
   )
-
 }
-
-const sampleData = [
-  {
-    id: 1,
-    start_timestamp: 1690252641901,
-    end_timestamp: 1690252902370,
-    memo: 'Reactのカスタムフックの使い方がわかった'
-  },
-  {
-    id: 1,
-    start_timestamp: 1690252641901,
-    end_timestamp: 1690252902370,
-    memo: 'Reactのカスタムフックの使い方がわかった'
-  },
-];

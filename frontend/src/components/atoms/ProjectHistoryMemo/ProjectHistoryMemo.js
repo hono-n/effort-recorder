@@ -3,8 +3,6 @@ import './ProjectHistoryMemo.scss';
 
 export default function ProjectHistoryMemo({ total, memo }) {
 
-  const formattedTotal = Math.round(total / 60000);
-
   const [showTooltip, setShowTooltip] = useState(false);
   const handleShowTooltip = (e) => {
     e.stopPropagation();
@@ -18,7 +16,7 @@ export default function ProjectHistoryMemo({ total, memo }) {
   return (
     <div className="project-history-memo" onMouseOver={handleShowTooltip} onMouseLeave={handleHideTooltip}>
       <div className="project-history-memo__total">
-        <p>{formattedTotal}分</p>
+        <p>{total}</p>
       </div>
       <div className="project-history-memo__memo-container">
         <p className="project-history-memo__memo">{memo}</p>

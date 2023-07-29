@@ -6,12 +6,15 @@ export function ProjectProvider({ children }) {
 
   const [projects, setProjects] = useState(null);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
+  const [total, setTotal] = useState();
 
   const projectProps = {
     projects: projects,
     setProjects: setProjects,
     selectedProjectId: selectedProjectId,
     setSelectedProjectId: setSelectedProjectId,
+    total: total,
+    setTotal: setTotal
   }
 
   return (
