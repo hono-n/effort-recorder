@@ -17,11 +17,9 @@ export default function ProjectList() {
 
   const {
     isLoading,
-    showModal,
-    setShowModal,
+    showModal, setShowModal,
     handleLoad,
-    handleFormAction,
-    handleInputValue,
+    handleFormAction, handleInputValue,
   }
     = useProjectList({
       projects: projects,
@@ -29,7 +27,6 @@ export default function ProjectList() {
       selectedProjectId: selectedProjectId,
       setSelectedProjectId: selectedProjectId
     });
-
 
   useEffect(() => {
     handleLoad();

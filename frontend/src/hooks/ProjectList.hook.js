@@ -7,7 +7,7 @@ import { useUpdateFormValue } from "./FormHandler.hook";
 import { useFlashMessageContext } from "../contexts/FlashMessageContext";
 
 // formData を所有するコンポーネントは ProjectList.js
-export function useProjectList({ projects, setProjects, selectedProjectId, setSelectedProjectId }) {
+export function useProjectList({ setProjects }) {
 
   const { user } = useAuth();
   const { setShowFlashMessage, setFlashMessage } = useFlashMessageContext();
