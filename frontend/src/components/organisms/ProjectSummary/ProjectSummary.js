@@ -32,11 +32,11 @@ export default function ProjectSummary() {
       <h2 className="project-summary__title">{selectedProjectObj?.name}</h2>
       <h3 className="project-summary__header">トータル学習時間</h3>
       <div className="project-summary__total">
-        {total ?
+        {total >= 0 ?
           <p>{totalStr}</p>
           :
-          <Loader size='small'/>
-          }
+          <Loader size='small' />
+        }
       </div>
       <Button
         className="project-summary__button"
