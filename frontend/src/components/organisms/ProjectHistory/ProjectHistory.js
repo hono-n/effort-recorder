@@ -32,8 +32,20 @@ export default function ProjectHistory() {
   return (
     <div className="project-history">
       <div className="project-history__sections-wrapper">
-        <dl>{sectionContent}</dl>
+        {
+          histories.length === 0 ?
+            <WhenNoContent />
+            : <dl>{sectionContent}</dl>
+        }
       </div>
     </div>
   )
+}
+
+function WhenNoContent() {
+  return (
+    <div className="when-no-content">
+      <p>まだ記録がありません</p>
+    </div>
+  );
 }
