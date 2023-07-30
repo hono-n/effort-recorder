@@ -42,8 +42,6 @@ export function useRecordModal({ recordFormData, setShowModal, recordTime }) {
     ).then(response => {
       if (response.data.status === 'created') {
         setShowModal(false);
-        setShowFlashMessage(true);
-        setFlashMessage({ type: 'success', message: '作業記録を保存しました' });
         setLastUpdated(Date.now());
       }
       else {
