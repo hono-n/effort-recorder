@@ -9,6 +9,7 @@ import Button from "../../molecules/Button/Button";
 import { useProjectContext } from "../../../contexts/ProjectContext";
 import { useProjectList } from "../../../hooks/ProjectList.hook";
 import './ProjectList.scss';
+import Loader from "../../molecules/Loader/Loader";
 
 
 export default function ProjectList() {
@@ -53,7 +54,7 @@ export default function ProjectList() {
       <div className="project-list__items-container">
         <div className="project-list__items">
           {isLoading ?
-            <h1>ロード中</h1>
+            <Loader size='large'/>
             :
             projects.map(project =>
               <li key={project.id}>

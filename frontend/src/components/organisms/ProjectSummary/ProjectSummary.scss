@@ -26,10 +26,12 @@
   }
 
   &__total {
-    @include header2;
-    line-height: 0%;
+    margin-top: 8px;
+    height: 36px;
     color: $primary-color-70;
     flex-shrink: 0;
+
+    @include header2;
   }
 
   &__button {

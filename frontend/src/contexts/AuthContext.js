@@ -2,6 +2,9 @@ import { useState, useEffect, createContext, useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
+import Loader from '../components/molecules/Loader/Loader';
+import '../components/templates/AuthorizationTemplate/AuthorizationTemplate.scss'
+
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
@@ -43,8 +46,12 @@ export function AuthProvider({ children }) {
 
   const authProps = { loginStatus, user, login, logout, isLoading };
 
-  if(isLoading){
-    return <h1>ロード中</h1>
+  if (isLoading) {
+    return (
+      <div style={{ height: '100vh' }}>
+        <Loader size='large'/>
+      </div>
+    )
   }
 
   else return (
