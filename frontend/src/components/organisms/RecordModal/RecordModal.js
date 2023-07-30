@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
 
 import Modal from "../../molecules/Modal/Modal";
-import Button from "../../molecules/Button/Button";
+import { ModalContentInitial, ModalContentRecording, ModalContentSubmit } from "./ModalContents";
 
 import './RecordModal.scss'
-import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
-import { useRecordModal } from "../../../hooks/RecordModal.hook";
-import { useUpdateFormData } from "../../../hooks/FormHandler.hook";
 
-export default function RecordModal({
-  selectedProjectObj,
-  setShowModal,
-  recordTime,
-  setRecordTime,
-}) {
+export default function RecordModal(
+  { selectedProjectObj, setShowModal, recordTime, setRecordTime }) {
 
   const [modalContentId, setModalContentId] = useState(1);
 
@@ -59,126 +51,4 @@ export default function RecordModal({
       />
     )
   }
-}
-
-function ModalContentInitial({ projectName, handleClick }) {
-
-  return (
-    <div className="modal-content">
-      <div className="modal-content__project-name-container">
-        <label className="modal-content__project-name-label">プロジェクト名</label>
-        <p className="modal-content__project-name">{projectName}</p>
-      </div>
-      <Button
-        className='modal-content__button'
-        type='submit'
-        label='記録を開始'
-        handleClick={handleClick}
-      />
-    </div>
-  )
-}
-
-
-function ModalContentRecording({ projectName, handleClick, setRecordTime }) {
-
-  const [currentTime, setCurrentTime] = useState(null);
-  const [passedMin, setPassedMin] = useState(null);
-  const [startTimeStamp, setStartTimeStamp] = useState(null);
-
-  function buttonAction() {
-    const endTimeStamp = new Date().getTime();
-    setRecordTime({ startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp });
-    handleClick();
-  }
-
-  useEffect(() => {
-    const startTime = new Date();
-    setStartTimeStamp(startTime.getTime());
-    setInterval(() => {
-      const current = new Date();
-      const time = current.toLocaleTimeString();
-      setCurrentTime(time);
-
-      const passed = Math.round((current - startTime) / (1000 * 60));
-      setPassedMin(passed);
-    }, 1000);
-  }, []);
-
-  return (
-    <div className="modal-content">
-      <div className="modal-content__project-name-container">
-        <label className="modal-content__project-name-label">プロジェクト名</label>
-        <p className="modal-content__project-name">{projectName}</p>
-      </div>
-      <div className="modal-content__start-time-container">
-        <label className="modal-content__start-time-label">記録開始時刻</label>
-        {startTimeStamp && <p className="modal-content__start-time">{new Date(startTimeStamp).toLocaleTimeString()}</p>}
-      </div>
-      <div className="modal-content__time-wrapper">
-        <p className="modal-content__current-time">
-          {currentTime ?
-            currentTime
-            :
-            new Date(startTimeStamp).toLocaleTimeString()
-          }
-        </p>
-        <p className="modal-content__passed-time">{passedMin}分経過</p>
-      </div>
-      <Button
-        className='modal-content__button'
-        type='submit'
-        label='記録を終了'
-        handleClick={buttonAction}
-      />
-    </div>
-  )
-}
-
-
-function ModalContentSubmit({ projectName, recordTime, setShowModal }) {
-
-  const [recordFormData, setRecordFormData] = useState({ memo: '' });
-  const startTime = new Date(recordTime.startTimeStamp).toLocaleTimeString();
-  const endTime = new Date(recordTime.endTimeStamp).toLocaleTimeString();
-  const passedTime = Math.round((recordTime.endTimeStamp - recordTime.startTimeStamp) / (60 * 1000));
-
-  const { handleCreateHistory } = useRecordModal({
-    setShowModal: setShowModal,
-    recordFormData: recordFormData,
-    recordTime: recordTime,
-  });
-
-
-  const updateFormData = useUpdateFormData({
-    formData: recordFormData,
-    setFormData: setRecordFormData,
-  });
-
-  return (
-    <form onSubmit={handleCreateHistory}>
-      <div className="modal-content">
-        <div className="modal-content__project-name-container">
-          <label className="modal-content__project-name-label">プロジェクト名</label>
-          <p className="modal-content__project-name">{projectName}</p>
-        </div>
-        <div className="modal-content__summary-container">
-          <p className="modal-content__summary-text">{startTime} 〜 {endTime}</p>
-          <p className="modal-content__summary-text">トータル：<span className="modal-content__strong">{passedTime}分</span></p>
-        </div>
-        <InputBoxWithCount
-          className='modal-content__input'
-          label='メモ（任意入力）'
-          placeholder='メモを保存'
-          max_char={50}
-          handleInputValue={{ callback: updateFormData, fieldName: 'memo' }}
-        />
-        <Button
-          className='modal-content__button'
-          type='submit'
-          label='記録を保存'
-        />
-      </div>
-    </form>
-  )
 }

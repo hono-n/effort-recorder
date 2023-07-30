@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import axios from 'axios'
 
 import { useAuth } from "../contexts/AuthContext";
@@ -16,10 +15,13 @@ export function useRecordModal({ recordFormData, setShowModal, recordTime }) {
   const endTimeStamp = recordTime.endTimeStamp;
   const totalMilSec = total + (recordTime.endTimeStamp - recordTime.startTimeStamp);
 
+  function formalize(original){
+      return original.toString().padStart(2, '0');
+  }
   const startTime = new Date(startTimeStamp);
-  const startYear = startTime.getFullYear().toString();
-  const startMonth = (startTime.getMonth() + 1).toString().padStart(2, '0');
-  const startDate = startTime.getDate().toString().padStart(2, '0');
+  const startYear = startTime.getFullYear();
+  const startMonth = formalize((startTime.getMonth() + 1));
+  const startDate = formalize(startTime.getDate());
 
   const handleCreateHistory = (event) => {
     const requestUrl = `http://localhost:3001/api/users/${user.id}/projects/${selectedProjectId}/histories`;
@@ -43,8 +45,6 @@ export function useRecordModal({ recordFormData, setShowModal, recordTime }) {
         setShowFlashMessage(true);
         setFlashMessage({ type: 'success', message: '作業記録を保存しました' });
         setLastUpdated(Date.now());
-        console.log(response.data);
-        // handleLoad();
       }
       else {
         setShowFlashMessage(true);
