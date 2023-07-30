@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useAuth } from "../contexts/AuthContext";
 import { useUpdateFormData } from "./FormHandler.hook";
 import { useFlashMessageContext } from "../contexts/FlashMessageContext";
+import { useProjectContext } from '../contexts/ProjectContext';
 
 // formData を所有するコンポーネントは ProjectList.js
 export function useProjectList({ setProjects }) {
@@ -14,6 +15,7 @@ export function useProjectList({ setProjects }) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const { selectedProjectId, setSelectedProjectId } = useProjectContext();
   const [projectListFormData, setProjectListFormData] = useState({ projectName: '' });
 
   const handleLoad = async () => {
@@ -23,6 +25,7 @@ export function useProjectList({ setProjects }) {
         if (response.data.status === 'ok') {
           setShowFlashMessage(false);
           setProjects(response.data.projects);
+          selectedProjectId === null && setSelectedProjectId(response.data.projects[0].id)
         } else {
           setShowFlashMessage(true);
           setFlashMessage({ type: 'error', message: 'データの取得に失敗しました' });
