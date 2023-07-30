@@ -6,6 +6,8 @@ import Button from "../../molecules/Button/Button";
 
 import './RecordModal.scss'
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
+import { useRecordModal } from "../../../hooks/RecordModal.hook";
+import { useUpdateFormData } from "../../../hooks/FormHandler.hook";
 
 export default function RecordModal({
   selectedProjectObj,
@@ -51,7 +53,7 @@ export default function RecordModal({
           <ModalContentSubmit
             projectName={selectedProjectObj?.name}
             recordTime={recordTime}
-            handleClick={() => setModalContentId(3)}
+            setShowModal={setShowModal}
           />}
         handleClick={() => setShowModal(false)}
       />
@@ -134,14 +136,27 @@ function ModalContentRecording({ projectName, handleClick, setRecordTime }) {
 }
 
 
-function ModalContentSubmit({ projectName, handleFormAction, recordTime }) {
+function ModalContentSubmit({ projectName, recordTime, setShowModal }) {
 
+  const [recordFormData, setRecordFormData] = useState({ memo: '' });
   const startTime = new Date(recordTime.startTimeStamp).toLocaleTimeString();
   const endTime = new Date(recordTime.endTimeStamp).toLocaleTimeString();
   const passedTime = Math.round((recordTime.endTimeStamp - recordTime.startTimeStamp) / (60 * 1000));
 
+  const { handleCreateHistory } = useRecordModal({
+    setShowModal: setShowModal,
+    recordFormData: recordFormData,
+    recordTime: recordTime,
+  });
+
+
+  const updateFormData = useUpdateFormData({
+    formData: recordFormData,
+    setFormData: setRecordFormData,
+  });
+
   return (
-    <form onSubmit={handleFormAction}>
+    <form onSubmit={handleCreateHistory}>
       <div className="modal-content">
         <div className="modal-content__project-name-container">
           <label className="modal-content__project-name-label">プロジェクト名</label>
@@ -156,6 +171,7 @@ function ModalContentSubmit({ projectName, handleFormAction, recordTime }) {
           label='メモ（任意入力）'
           placeholder='メモを保存'
           max_char={50}
+          handleInputValue={{ callback: updateFormData, fieldName: 'memo' }}
         />
         <Button
           className='modal-content__button'

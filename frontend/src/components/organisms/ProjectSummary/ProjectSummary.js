@@ -5,24 +5,18 @@ import RecordModal from "../RecordModal/RecordModal";
 import Button from "../../molecules/Button/Button";
 
 import { useProjectContext } from "../../../contexts/ProjectContext";
-import { useProjectSummary } from "../../../hooks/ProjectSummary.hook";
 
 export default function ProjectSummary() {
 
-  const { projects, setProjects, selectedProjectId, setSelectedProjectId, total } = useProjectContext();
+  const { projects, selectedProjectId, total } = useProjectContext();
   const selectedProjectObj = projects?.filter(project => project.id === selectedProjectId)[0];
 
-  const {
-    showModal,
-    setShowModal,
-    recordTime,
-    setRecordTime,
-  }
-    = useProjectSummary({ setProjects: setProjects });
+  const [showModal, setShowModal] = useState(false);
+  const [recordTime, setRecordTime] = useState(null);
 
-    const totalMins = Math.round(total / (60 * 1000));
-    const totalHours = Math.floor(totalMins / 60);
-    const totalStr = `${totalHours}時間 ${(totalMins % 60).toString().padStart(2, '0')}分`
+  const totalMins = Math.round(total / (60 * 1000));
+  const totalHours = Math.floor(totalMins / 60);
+  const totalStr = `${totalHours}時間 ${(totalMins % 60).toString().padStart(2, '0')}分`
 
   return (
     <div className="project-summary">

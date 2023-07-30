@@ -1,40 +1,42 @@
 class Api::HistoriesController < ApplicationController
   def index
-    @histories = histories
-    if histories.empty?
+    @project = project
+    @histories = @project.histories
+    if @histories.empty?
       render json: { status: :ok, total: 0, histories: @histories }
     else
-      total = @histories.first.total
-      target_month = @projects.histories.select(:target_month).group(:target_month).order(target_month: :desc)
+      total = @histories.order(id: :desc).first.total
+      target_month_array = @project.histories.select(:target_month).group(:target_month).order(target_month: :desc)
 
-      @histories = target_month.map do |month|
+      histories_per_month = target_month_array.map do |month|
         target_month = month.target_month
-        { "#{target_month}": @projects.histories.where('target_month = ?', target_month).order(id: :desc) }
+        { "#{target_month}": @project.histories.where('target_month = ?', target_month).order(id: :desc) }
       end
-      render json: { status: :ok, total:, histories: @histories }
+      render json: { status: :ok, total:, histories: histories_per_month }
     end
   end
 
-  # def create
-  #   @user = User.find(params[:user_id])
-  #   @project = @user.projects.new(project_params)
+  def create
+    @project = project
+    @history = @project.histories.new(history_params)
 
-  #   if @project.save
-  #     render json: { status: :created, project: @project }
-  #   else
-  #     render json: { status: 500, errors: @project.errors }
-  #   end
-  # end
+    if @history.save
+      render json: { status: :created, history: @history }
+    else
+      render json: { status: 500, errors: @history.errors }
+    end
+  end
 
   private
 
-  def project_params
-    params.require(:project).permit(:name, :user_id)
+  def project
+    @user = User.find(params[:user_id])
+    @user.projects.find(params[:project_id])
   end
 
-  def histories
-    @user = User.find(params[:user_id])
-    @projects = @user.projects.find(params[:project_id])
-    @projects&.histories&.order(id: :desc)
+  def history_params
+    params.require(:history).permit(
+      :user_id, :project_id, :target_month, :target_date, :start_timestamp, :end_timestamp, :total, :memo
+    )
   end
 end

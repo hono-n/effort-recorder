@@ -7,20 +7,18 @@ import ProjectHistoryItem from "../../molecules/ProjectHistoryItem/ProjectHistor
 
 export default function ProjectHistory() {
 
-  const { selectedProjectId, setTotal } = useProjectContext();
+  const { selectedProjectId, setTotal, lastUpdated } = useProjectContext();
 
   const {
     formData,
     isLoading,
     handleLoad,
     histories,
-    handleFormAction,
-    handleInputValue,
   } = useProjectHistory({ selectedProjectId, setTotal });
 
   useEffect(() => {
     handleLoad();
-  }, [selectedProjectId]);
+  }, [selectedProjectId, lastUpdated]);
 
   const sectionContent = histories?.map((obj, idx) => {
     const targetMonth = Object.keys(obj)[0];
