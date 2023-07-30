@@ -12,10 +12,14 @@ import './LoginForm.scss';
 
 export default function LoginForm() {
 
-  const { updateFormData, handleFormAction } = useLoginForm();
+  const navigate = useNavigate();
+
+  const { formData, updateFormData, handleFormAction } = useLoginForm();
   const { setShowFlashMessage } = useFlashMessageContext();
 
-  const navigate = useNavigate();
+  const buttonState =
+    formData.userName.length == 0 || formData.password.length == 0 ?
+      'disabled' : 'active';
 
   function linkButtonAction() {
     navigate("/signup");
@@ -42,6 +46,7 @@ export default function LoginForm() {
           type='submit'
           className='login-form__login-button'
           label='ログイン'
+          state={buttonState}
         />
       </form>
       <LinkButton
