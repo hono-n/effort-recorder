@@ -17,9 +17,6 @@ export default function ProjectSummary() {
     setShowModal,
     recordTime,
     setRecordTime,
-    handleLoad,
-    handleFormAction,
-    handleInputValue,
   }
     = useProjectSummary({ setProjects: setProjects });
 

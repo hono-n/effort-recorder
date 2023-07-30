@@ -19,7 +19,7 @@ export default function ProjectList() {
     isLoading,
     showModal, setShowModal,
     handleLoad,
-    handleFormAction, handleInputValue,
+    handleFormAction, updateFormData,
   }
     = useProjectList({
       projects: projects,
@@ -41,7 +41,7 @@ export default function ProjectList() {
             <ModalContent
               closeModal={() => setShowModal(false)}
               handleFormAction={handleFormAction}
-              handleInputValue={handleInputValue}
+              updateFormData={updateFormData}
             />
           }
           handleClick={() => setShowModal(false)} />
@@ -70,7 +70,7 @@ export default function ProjectList() {
   )
 }
 
-function ModalContent({ handleFormAction, handleInputValue }) {
+function ModalContent({ handleFormAction, updateFormData }) {
 
   return (
     <form onSubmit={handleFormAction}>
@@ -79,7 +79,7 @@ function ModalContent({ handleFormAction, handleInputValue }) {
           label='プロジェクト名'
           placeholder='プロジェクト名を入力'
           max_char={15}
-          handleInputValue={{ callback: handleInputValue, fieldName: 'projectName' }}
+          handleInputValue={{ callback: updateFormData, fieldName: 'projectName' }}
         />
         <Button
           className='modal-content__button'

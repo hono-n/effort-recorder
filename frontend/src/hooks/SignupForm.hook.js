@@ -14,7 +14,7 @@ export default function useSignupForm() {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const [signupFormData, setSignupFormData] = useState({
     userName: '',
     password: '',
     passwordConfirmation: ''
@@ -27,8 +27,8 @@ export default function useSignupForm() {
   const [errors, setErrors] = useState(initialValue);
   const { validate } = useSignupErrorHandler();
   const updateFormData = useUpdateFormData({
-    formData: formData,
-    setFormData: setFormData,
+    formData: signupFormData,
+    setFormData: setSignupFormData,
   });
 
   const { setShowFlashMessage, setFlashMessage } = useFlashMessageContext();
@@ -37,9 +37,9 @@ export default function useSignupForm() {
     axios.post('http://localhost:3001/api/users',
       {
         user: {
-          user_name: formData.userName,
-          password: formData.password,
-          password_confirmation: formData.passwordConfirmation
+          user_name: signupFormData.userName,
+          password: signupFormData.password,
+          password_confirmation: signupFormData.passwordConfirmation
         }
       },
       { withCredentials: true }
@@ -78,7 +78,7 @@ export default function useSignupForm() {
   }
 
   const SignupForm = {
-    formData: formData,
+    formData: signupFormData,
     errors: errors,
     handleInputValue: handleInputValue,
     handleFormAction: handleCreateAccount,

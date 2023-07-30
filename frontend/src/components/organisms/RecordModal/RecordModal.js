@@ -152,16 +152,16 @@ function ModalContentSubmit({ projectName, handleFormAction, recordTime }) {
           <p className="modal-content__summary-text">トータル：<span className="modal-content__strong">{passedTime}分</span></p>
         </div>
         <InputBoxWithCount
-                  className='modal-content__input'
-        label='メモ（任意入力）'
-        placeholder='メモを保存'
-        max_char={50}
+          className='modal-content__input'
+          label='メモ（任意入力）'
+          placeholder='メモを保存'
+          max_char={50}
         />
         <Button
           className='modal-content__button'
           type='submit'
-          label='記録を保存' 
-          />
+          label='記録を保存'
+        />
       </div>
     </form>
   )

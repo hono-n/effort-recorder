@@ -14,15 +14,7 @@ export function useProjectList({ setProjects }) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({ projectName: '' });
-
-  const updateFormData = useUpdateFormData({
-    formData: formData,
-    setFormData: setFormData,
-  });
-  function handleInputValue(fieldName, inputValue) {
-    updateFormData(fieldName, inputValue);
-  }
+  const [projectListFormData, setProjectListFormData] = useState({ projectName: '' });
 
   const handleLoad = async () => {
     const requestUrl = `http://localhost:3001/api/users/${user.id}/projects`;
@@ -47,7 +39,7 @@ export function useProjectList({ setProjects }) {
       {
         project: {
           user_id: user.id,
-          name: formData.projectName,
+          name: projectListFormData.projectName,
         }
       },
       { withCredentials: true }
@@ -74,13 +66,16 @@ export function useProjectList({ setProjects }) {
 
 
   const projectList = {
-    formData: formData,
+    formData: projectListFormData,
     isLoading: isLoading,
     showModal: showModal,
     setShowModal: setShowModal,
     handleLoad: handleLoad,
     handleFormAction: handleCreateProject,
-    handleInputValue: handleInputValue,
+    updateFormData: useUpdateFormData({
+      formData: projectListFormData,
+      setFormData: setProjectListFormData,
+    }),
   };
   return projectList;
 }

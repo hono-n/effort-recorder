@@ -14,11 +14,11 @@ export function useProjectHistory({ selectedProjectId, setTotal }) {
   const { setFlashMessage, setShowFlashMessage } = useFlashMessageContext();
   const [isLoading, setIsLoading] = useState(true);
   const [histories, setHistories] = useState([]);
-  const [formData, setFormData] = useState({ projectName: '' });
+  const [historyFormData, setHistoryFormData] = useState({ projectName: '' });
 
   const updateFormData = useUpdateFormData({
-    formData: formData,
-    setFormData: setFormData,
+    formData: historyFormData,
+    setFormData: setHistoryFormData,
   });
   function handleInputValue(fieldName, inputValue) {
     updateFormData(fieldName, inputValue);
@@ -76,7 +76,7 @@ export function useProjectHistory({ selectedProjectId, setTotal }) {
 
 
   const ProjectHistory = {
-    formData: formData,
+    formData: historyFormData,
     isLoading: isLoading,
     handleLoad: handleLoad,
     histories: histories,
