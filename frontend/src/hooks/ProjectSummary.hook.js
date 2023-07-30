@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useUpdateFormValue } from "./FormHandler.hook";
+import { useUpdateFormData } from "./FormHandler.hook";
 
 // formData を所有するコンポーネントは ProjectList.js
 export function useProjectSummary({ setProjects }) {
@@ -9,7 +9,7 @@ export function useProjectSummary({ setProjects }) {
   const [recordTime, setRecordTime] = useState(null);
   const [formData, setFormData] = useState({ projectName: '' });
 
-  const updateFormData = useUpdateFormValue({
+  const updateFormData = useUpdateFormData({
     formData: formData,
     setFormData: setFormData,
   });

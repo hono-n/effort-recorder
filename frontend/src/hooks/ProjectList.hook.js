@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 import { useAuth } from "../contexts/AuthContext";
-import { useUpdateFormValue } from "./FormHandler.hook";
+import { useUpdateFormData } from "./FormHandler.hook";
 import { useFlashMessageContext } from "../contexts/FlashMessageContext";
 
 // formData を所有するコンポーネントは ProjectList.js
@@ -16,7 +16,7 @@ export function useProjectList({ setProjects }) {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ projectName: '' });
 
-  const updateFormData = useUpdateFormValue({
+  const updateFormData = useUpdateFormData({
     formData: formData,
     setFormData: setFormData,
   });

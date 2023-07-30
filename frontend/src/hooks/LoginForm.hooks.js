@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios'
 
 import { useAuth } from "../contexts/AuthContext";
-import { useUpdateFormValue } from "./FormHandler.hook";
+import { useUpdateFormData } from "./FormHandler.hook";
 import { useFlashMessageContext } from "../contexts/FlashMessageContext";
 
 // formData を所有するコンポーネントは LoginForm.js
@@ -12,7 +12,7 @@ export default function useLoginForm() {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const [loginFormData, setLoginFormData] = useState({
     userName: '',
     password: '',
   });
@@ -23,8 +23,8 @@ export default function useLoginForm() {
     axios.post('http://localhost:3001/api/session',
       {
         user: {
-          user_name: formData.userName,
-          password: formData.password,
+          user_name: loginFormData.userName,
+          password: loginFormData.password,
         }
       },
       { withCredentials: true }
@@ -50,10 +50,10 @@ export default function useLoginForm() {
 
 
   const loginForm = {
-    formData: formData,
-    updateFormValue: useUpdateFormValue({
-      formData: formData,
-      setFormData: setFormData,
+    formData: loginFormData,
+    updateFormData: useUpdateFormData({
+      formData: loginFormData,
+      setFormData: setLoginFormData,
     }),
     handleFormAction: handleLogin,
   };

@@ -1,6 +1,6 @@
-export function useUpdateFormValue({ formData, setFormData }) {
+export function useUpdateFormData({ formData, setFormData }) {
 
-  function updateFormValue(fieldName, inputValue) {
+  function updateFormData(fieldName, inputValue) {
     const newFormData = {
       ...formData,
       [fieldName]: inputValue
@@ -9,5 +9,5 @@ export function useUpdateFormValue({ formData, setFormData }) {
     return newFormData;
   }
 
-  return updateFormValue;
+  return updateFormData;
 }

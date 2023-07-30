@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios'
 
-import { useUpdateFormValue } from "./FormHandler.hook";
+import { useUpdateFormData } from "./FormHandler.hook";
 import { useAuth } from "../contexts/AuthContext";
 import { useSignupErrorHandler } from "./ErrorHandler.hook";
 import { useFlashMessageContext } from "../contexts/FlashMessageContext";
@@ -26,7 +26,7 @@ export default function useSignupForm() {
 
   const [errors, setErrors] = useState(initialValue);
   const { validate } = useSignupErrorHandler();
-  const updateFormData = useUpdateFormValue({
+  const updateFormData = useUpdateFormData({
     formData: formData,
     setFormData: setFormData,
   });

@@ -12,7 +12,7 @@ import './LoginForm.scss';
 
 export default function LoginForm() {
 
-  const { updateFormValue, handleFormAction } = useLoginForm();
+  const { updateFormData, handleFormAction } = useLoginForm();
   const { setShowFlashMessage } = useFlashMessageContext();
 
   const navigate = useNavigate();
@@ -29,14 +29,14 @@ export default function LoginForm() {
           className='login-form__user-name-input'
           label='ユーザー名'
           placeholder='ユーザー名を入力'
-          handleInputValue={{ callback: updateFormValue, fieldName: 'userName' }}
+          handleInputValue={{ callback: updateFormData, fieldName: 'userName' }}
         />
         <InputBoxWithLabel
           className='login-form__user-name-password'
           input_type='password'
           label='パスワード'
           placeholder='パスワードを入力'
-          handleInputValue={{ callback: updateFormValue, fieldName: 'password' }}
+          handleInputValue={{ callback: updateFormData, fieldName: 'password' }}
         />
         <Button
           type='submit'
