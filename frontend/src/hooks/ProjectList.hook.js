@@ -23,7 +23,6 @@ export function useProjectList({ setProjects }) {
     await axios.get(requestUrl, { withCredentials: true })
       .then(response => {
         if (response.data.status === 'ok') {
-          setShowFlashMessage(false);
           setProjects(response.data.projects);
           selectedProjectId === null && setSelectedProjectId(response.data.projects[0].id)
         } else {

@@ -6,7 +6,7 @@
   background-color: $gray-scale-00;
 
   &__overview {
-    height: 120px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     flex-grow: 0;
@@ -15,7 +15,7 @@
 
   &__title {
     @include header3;
-    margin-top: 40px;
+    margin-top: 64px;
   }
 
   &__link-button {
@@ -23,7 +23,7 @@
   }
 
   &__items-container {
-    height: calc(100% - 120px);
+    height: calc(100% - 150px);
     overflow-y: auto;
   }
 
