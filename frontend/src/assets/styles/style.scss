@@ -10,18 +10,22 @@
 
 // molecules
 @use '../../components/molecules/Button/Button.scss';
-@use '../../components/molecules/InputBox/InputBox.scss';
 @use '../../components/molecules/FlashMessage/FlashMessage.scss';
+@use '../../components/molecules/InputBox/InputBox.scss';
 @use '../../components/molecules/LinkButton/LinkButton.scss';
+@use '../../components/molecules/Loader/Loader.scss';
+@use '../../components/molecules/Modal/Modal.scss';
 @use '../../components/molecules/ProjectHistoryItem/ProjectHistoryItem.scss';
+
 
 // organisms
 @use '../../components/organisms/Header/Header.scss';
 @use '../../components/organisms/LoginForm/LoginForm.scss';
-@use '../../components/organisms/SignupForm/SignupForm.scss';
+@use '../../components/organisms/ProjectHistory/ProjectHistory.scss';
 @use '../../components/organisms/ProjectList/ProjectList.scss';
 @use '../../components/organisms/ProjectSummary/ProjectSummary.scss';
-@use '../../components/organisms/ProjectHistory/ProjectHistory.scss';
+@use '../../components/organisms/RecordModal/RecordModal.scss';
+@use '../../components/organisms/SignupForm/SignupForm.scss';
 
 
 // templates
