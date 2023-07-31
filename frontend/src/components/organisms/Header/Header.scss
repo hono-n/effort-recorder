@@ -16,6 +16,7 @@
     display: block;
     @include header3;
     color: $gray-scale-00;
+    opacity: 80%;
   }
 
   &__user-avatar {

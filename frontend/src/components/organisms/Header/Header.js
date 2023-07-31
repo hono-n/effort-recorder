@@ -23,7 +23,9 @@ export default function Header() {
   return (
     <div className="header" onMouseLeave={handleHideMenu}>
       <div className="header__wrapper">
-        <div className="header__logo">LOGO</div>
+        <div className="header__logo">
+          <p>EFFORT RECORDER</p>
+        </div>
         <div className="header__user-avatar">
           <img
             id="icon-btn"
