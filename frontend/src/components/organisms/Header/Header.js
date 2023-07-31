@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from '../../../contexts/AuthContext';
 import useUserProfileSubMenu from "../../../hooks/UserProfileSubMenu.hooks";
 
-import SubMenuItem from "../../atoms/SubMenuItem/SubMenuItem";
+import SubMenuItem from "../../molecules/SubMenuItem/SubMenuItem";
 
 import avatar from '../../../assets/icons/user-avatar.svg';
 import './Header.scss';

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import ProjectListItem from "../../atoms/ProjectListItem/ProjectListItem";
+import ProjectListItem from "../../molecules/ProjectListItem/ProjectListItem";
 import LinkButton from "../../molecules/LinkButton/LinkButton";
 import Modal from "../../molecules/Modal/Modal";
 import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";

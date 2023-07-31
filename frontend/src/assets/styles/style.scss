@@ -3,10 +3,8 @@
 
 // atoms
 @use '../../components/atoms/InputBoxBase/InputBoxBase.scss';
-@use '../../components/atoms/ProjectListItem/ProjectListItem.scss';
 @use '../../components/atoms/ProjectHistoryRecord/ProjectHistoryRecord.scss';
 @use '../../components/atoms/ProjectHistoryMemo/ProjectHistoryMemo.scss';
-@use '../../components/atoms/SubMenuItem/SubMenuItem.scss';
 
 // molecules
 @use '../../components/molecules/Button/Button.scss';
@@ -16,6 +14,8 @@
 @use '../../components/molecules/Loader/Loader.scss';
 @use '../../components/molecules/Modal/Modal.scss';
 @use '../../components/molecules/ProjectHistoryItem/ProjectHistoryItem.scss';
+@use '../../components/molecules/ProjectListItem/ProjectListItem.scss';
+@use '../../components/molecules/SubMenuItem/SubMenuItem.scss';
 
 
 // organisms
