@@ -4,6 +4,7 @@ import { useProjectHistory } from "../../../hooks/ProjectHistory.hook";
 
 import { ProjectHistorySection } from "./ProjectHistorySection";
 import './ProjectHistory.scss';
+import Loader from "../../molecules/Loader/Loader";
 
 export default function ProjectHistory() {
 
@@ -32,7 +33,7 @@ export default function ProjectHistory() {
   return (
     <div className="project-history">
       <div className="project-history__sections-wrapper">
-        {
+        {isLoading ? <Loader size='large' /> :
           histories.length === 0 ?
             <WhenNoContent />
             : <dl>{sectionContent}</dl>
