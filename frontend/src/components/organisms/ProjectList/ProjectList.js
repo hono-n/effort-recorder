@@ -3,8 +3,7 @@ import React, { useEffect } from "react";
 import ProjectListItem from "../../molecules/ProjectListItem/ProjectListItem";
 import LinkButton from "../../molecules/LinkButton/LinkButton";
 import Modal from "../../molecules/Modal/Modal";
-import InputBoxWithCount from "../../molecules/InputBox/InputBoxWithCount";
-import Button from "../../molecules/Button/Button";
+import AddProjectModalContent from "../AddProjectModal/AddProjectModal";
 
 import { useProjectContext } from "../../../contexts/ProjectContext";
 import { useProjectList } from "../../../hooks/ProjectList.hook";
@@ -39,7 +38,7 @@ export default function ProjectList() {
         <Modal
           title='プロジェクトの追加'
           children={
-            <ModalContent
+            <AddProjectModalContent
               closeModal={() => setShowModal(false)}
               handleFormAction={handleFormAction}
               updateFormData={updateFormData}
@@ -68,25 +67,5 @@ export default function ProjectList() {
         </div>
       </div>
     </div>
-  )
-}
-
-function ModalContent({ handleFormAction, updateFormData }) {
-
-  return (
-    <form onSubmit={handleFormAction}>
-      <div className="modal-content">
-        <InputBoxWithCount
-          label='プロジェクト名'
-          placeholder='プロジェクト名を入力'
-          max_char={15}
-          handleInputValue={{ callback: updateFormData, fieldName: 'projectName' }}
-        />
-        <Button
-          className='modal-content__button'
-          type='submit'
-          label='作成' />
-      </div>
-    </form>
   )
 }

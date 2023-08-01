@@ -19,6 +19,7 @@
 
 
 // organisms
+@use '../../components/organisms/AddProjectModal/AddProjectModal.scss';
 @use '../../components/organisms/Header/Header.scss';
 @use '../../components/organisms/LoginForm/LoginForm.scss';
 @use '../../components/organisms/ProjectHistory/ProjectHistory.scss';

@@ -39,17 +39,3 @@
     }
   }
 }
-
-.modal-content {
-  width: 400px;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-
-  &__button {
-    margin-top: 24px;
-  }
-
-}
