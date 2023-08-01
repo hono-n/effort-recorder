@@ -73,6 +73,7 @@ export function useProjectList({ setProjects }) {
     showModal: showModal,
     setShowModal: setShowModal,
     handleLoad: handleLoad,
+    projectListFormData: projectListFormData,
     handleFormAction: handleCreateProject,
     updateFormData: useUpdateFormData({
       formData: projectListFormData,

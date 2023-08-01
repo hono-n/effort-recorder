@@ -3,7 +3,13 @@ import Button from "../../molecules/Button/Button";
 
 import './AddProjectModal.scss';
 
-export default function AddProjectModalContent({ handleFormAction, updateFormData }) {
+export default function AddProjectModalContent({
+  projectListFormData,
+  handleFormAction,
+  updateFormData
+}) {
+
+  let buttonState = projectListFormData.projectName.length > 0 ? 'active' : 'disabled';
 
   return (
     <form onSubmit={handleFormAction}>
@@ -17,7 +23,9 @@ export default function AddProjectModalContent({ handleFormAction, updateFormDat
         <Button
           className='add-project-modal__button'
           type='submit'
-          label='作成' />
+          state={buttonState}
+          label='作成'
+        />
       </div>
     </form>
   )

@@ -19,6 +19,7 @@ export default function ProjectList() {
     isLoading,
     showModal, setShowModal,
     handleLoad,
+    projectListFormData,
     handleFormAction, updateFormData,
   }
     = useProjectList({
@@ -40,6 +41,7 @@ export default function ProjectList() {
           children={
             <AddProjectModalContent
               closeModal={() => setShowModal(false)}
+              projectListFormData={projectListFormData}
               handleFormAction={handleFormAction}
               updateFormData={updateFormData}
             />
