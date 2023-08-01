@@ -7,7 +7,13 @@ import { useRecordModal } from "../../../hooks/RecordModal.hook";
 import { useUpdateFormData } from "../../../hooks/FormHandler.hook";
 
 
-export function ModalContentInitial({ projectName, handleClick }) {
+export function ModalContentInitial({ projectName, handleClick, setRecordTime }) {
+
+  function buttonAction() {
+    const startTimeStamp = new Date().getTime();
+    setRecordTime({ startTimeStamp: startTimeStamp, endTimeStamp: '' });
+    handleClick();
+  }
 
   return (
     <div className="modal-content">
@@ -19,34 +25,33 @@ export function ModalContentInitial({ projectName, handleClick }) {
         className='modal-content__button'
         type='submit'
         label='記録を開始'
-        handleClick={handleClick}
+        handleClick={buttonAction}
       />
     </div>
   )
 }
 
 
-export function ModalContentRecording({ projectName, handleClick, setRecordTime }) {
+export function ModalContentRecording({ projectName, handleClick, recordTime, setRecordTime }) {
 
   const [currentTime, setCurrentTime] = useState(null);
   const [passedMin, setPassedMin] = useState(null);
-  const [startTimeStamp, setStartTimeStamp] = useState(null);
+
+  const startTime = new Date(recordTime.startTimeStamp);
 
   function buttonAction() {
     const endTimeStamp = new Date().getTime();
-    setRecordTime({ startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp });
+    setRecordTime({ ...recordTime, endTimeStamp: endTimeStamp });
     handleClick();
   }
 
   useEffect(() => {
-    const startTime = new Date();
-    setStartTimeStamp(startTime.getTime());
     setInterval(() => {
       const current = new Date();
       const time = current.toLocaleTimeString();
       setCurrentTime(time);
 
-      const passed = Math.round((current - startTime) / (1000 * 60));
+      const passed = Math.floor((current - startTime) / (1000 * 60));
       setPassedMin(passed);
     }, 1000);
   }, []);
@@ -59,12 +64,12 @@ export function ModalContentRecording({ projectName, handleClick, setRecordTime 
       </div>
       <div className="modal-content__start-time-container">
         <label className="modal-content__start-time-label">記録開始時刻</label>
-        {startTimeStamp && <p className="modal-content__start-time">{new Date(startTimeStamp).toLocaleTimeString()}</p>}
+        <p className="modal-content__start-time">{startTime.toLocaleTimeString()}</p>
       </div>
       <div className="modal-content__time-wrapper">
         <p className="modal-content__current-time">
           {currentTime ?
-            currentTime : new Date(startTimeStamp).toLocaleTimeString()
+            currentTime : startTime.toLocaleTimeString()
           }
         </p>
         <p className="modal-content__passed-time">{passedMin}分経過</p>
@@ -89,7 +94,7 @@ export function ModalContentSubmit({ projectName, recordTime, setShowModal }) {
   }
   const startTime = getDateStr(recordTime.startTimeStamp);
   const endTime = getDateStr(recordTime.endTimeStamp);
-  const passedTime = Math.round((recordTime.endTimeStamp - recordTime.startTimeStamp) / (60 * 1000));
+  const passedTime = Math.floor((recordTime.endTimeStamp - recordTime.startTimeStamp) / (60 * 1000));
 
   const { handleCreateHistory } = useRecordModal({
     setShowModal: setShowModal,

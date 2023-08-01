@@ -25,7 +25,7 @@ export default function DashboardTemplate() {
           <ProjectList />
           {selectedProjectId &&
             <div className="dashboard__selected-project">
-              <ProjectSummary projectName='英語' total='4時間24分' />
+              <ProjectSummary />
               <ProjectHistory />
             </div>
           }

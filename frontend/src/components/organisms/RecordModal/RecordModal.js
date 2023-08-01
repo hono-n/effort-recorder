@@ -17,6 +17,7 @@ export default function RecordModal(
         children={
           <ModalContentInitial
             projectName={selectedProjectObj?.name}
+            setRecordTime={setRecordTime}
             handleClick={() => setModalContentId(2)}
           />
         }
@@ -30,6 +31,7 @@ export default function RecordModal(
         children={
           <ModalContentRecording
             projectName={selectedProjectObj?.name}
+            recordTime={recordTime}
             setRecordTime={setRecordTime}
             handleClick={() => setModalContentId(3)}
           />}
