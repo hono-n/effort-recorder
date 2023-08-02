@@ -12,7 +12,7 @@ import './DashboardTemplate.scss';
 export default function DashboardTemplate() {
 
   const { showFlashMessage, setShowFlashMessage, flashMessage } = useFlashMessageContext();
-  const { selectedProjectId } = useProjectContext();
+  const { projects, selectedProjectId } = useProjectContext();
 
   return (
     <div className='dashboard'>
@@ -23,10 +23,14 @@ export default function DashboardTemplate() {
         }
         <div className='dashboard__content-wrapper'>
           <ProjectList />
-          {selectedProjectId &&
+          {selectedProjectId ?
             <div className="dashboard__selected-project">
               <ProjectSummary />
               <ProjectHistory />
+            </div>
+            :
+            <div className="dashboard__no-project-container">
+              <p>プロジェクトを作成して記録を開始しましょう</p>
             </div>
           }
         </div>

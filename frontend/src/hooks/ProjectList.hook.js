@@ -23,8 +23,13 @@ export function useProjectList({ setProjects }) {
     await axios.get(requestUrl, { withCredentials: true })
       .then(response => {
         if (response.data.status === 'ok') {
-          setProjects(response.data.projects);
-          selectedProjectId === null && setSelectedProjectId(response.data.projects[0].id)
+          if (response.data.projects === 'none') {
+            setProjects([]);
+          }
+          else {
+            setProjects(response.data.projects);
+            selectedProjectId === null && setSelectedProjectId(response.data.projects[0].id)
+          }
         } else {
           setShowFlashMessage(true);
           setFlashMessage({ type: 'error', message: 'データの取得に失敗しました' });

@@ -3,7 +3,11 @@ class Api::ProjectsController < ApplicationController
     # ネストされたリソースにおける取得の仕方：params[:リソース名の単数系_id]
     @user = User.find(params[:user_id])
     @projects = @user.projects
-    render json: { status: :ok, projects: @projects }
+    if @projects.empty?
+      render json: { status: :ok, projects: 'none' }
+    else
+      render json: { status: :ok, projects: @projects }
+    end
   end
 
   def create
