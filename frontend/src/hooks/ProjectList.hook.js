@@ -53,8 +53,6 @@ export function useProjectList({ setProjects }) {
     ).then(response => {
       if (response.data.status === 'created') {
         setShowModal(false);
-        setShowFlashMessage(true);
-        setFlashMessage({ type: 'success', message: 'プロジェクトを作成しました' });
         handleLoad();
       }
       else {
