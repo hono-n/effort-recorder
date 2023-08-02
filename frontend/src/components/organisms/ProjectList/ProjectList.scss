@@ -6,6 +6,7 @@
   background-color: $gray-scale-00;
 
   &__overview {
+    width: 320px;
     height: 150px;
     display: flex;
     flex-direction: column;
