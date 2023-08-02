@@ -1,1 +1,93 @@
-$background-color: #f3f3f3;
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
+$primary-color-90: #012749;
+$primary-color-80: #003a6d;
+$primary-color-70: #00539A;
+$primary-color-60: #0072c3;
+$primary-color-10: #e5f6ff;
+
+$error-color-60: #DA1E28;
+$error-color-50: #fa4d56;
+$error-color-20: #FFD7D9;
+
+$success-color-60: #198038;
+$success-color-10: #DEFBE6;
+
+$gray-scale-80: #3c3838;
+$gray-scale-50: #8F8B8B;
+$gray-scale-30: #cac5c4;
+$gray-scale-20: #e5e0df;
+$gray-scale-10: #f7f3f2;
+$gray-scale-00: #ffffff;
+
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 62.5%; // 10px
+  font-weight: 400;
+  color: $gray-scale-80;
+}
+
+@mixin header1 {
+  font-size: 3.2rem;
+  font-weight: 500;
+}
+
+@mixin header2 {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+@mixin header3 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+@mixin text-regular {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+@mixin text-placeholder {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: $gray-scale-50;
+}
+
+@mixin text-label {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.12rem;
+}
+
+@mixin text-caption {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: $gray-scale-50;
+}
+
+@mixin text-error {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: $error-color-60;
+}
+
+@mixin text-success {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: $success-color-60;
+}
+
+@mixin unauthorized_template {
+  &__back-ground {
+    background-color: $primary-color-90;
+    height: 100vh;
+    width: calc(100vw - 486px);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 486px;
+  }
+}

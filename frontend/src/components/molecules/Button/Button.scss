@@ -1,0 +1,26 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.button {
+  box-sizing: border-box;
+  height: 36px;
+  width: 320px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  @include text-label;
+
+  &--active {
+    color: $gray-scale-00;
+    background-color: $primary-color-80;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $primary-color-70;
+    }
+  }
+
+  &--disabled {
+    color: $gray-scale-50;
+    background-color: $gray-scale-30;
+  }
+}

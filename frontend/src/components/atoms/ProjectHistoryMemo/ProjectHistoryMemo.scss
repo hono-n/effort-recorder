@@ -1,0 +1,40 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.project-history-memo {
+  position: relative;
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+
+  background-color: $success-color-10;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  &__total {
+    flex-shrink: 0;
+    @include text-label;
+    color: $success-color-60;
+    width: 120px;
+    text-align: right;
+  }
+
+  &__memo-container {
+    padding-right: 12px;
+    min-width: 200px;
+  }
+
+  &__memo {
+    display: block;
+    @include text-regular;
+    color: $success-color-60;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

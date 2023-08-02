@@ -1,0 +1,41 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.authorization {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  &__back-ground {
+    background-color: $primary-color-90;
+    height: 100vh;
+    width: calc(100vw - 486px);
+  }
+
+  &__logo-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__logo-text {
+    @include header2();
+    margin-top: 36px;
+    color: $gray-scale-00;
+    opacity: 90%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 486px;
+  }
+
+  &__header {
+    @include header2;
+    margin-top: 80px;
+  }
+}

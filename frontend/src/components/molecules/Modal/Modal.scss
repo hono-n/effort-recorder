@@ -1,0 +1,68 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.modal {
+  &__overlay {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(60, 56, 56, 0.72);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__window {
+    z-index: 4;
+    width: 480px;
+    background-color: $gray-scale-00;
+    height: fit-content;
+    max-height: 600px;
+    border-radius: 12px;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+  }
+
+  &__title {
+    @include header3;
+    width: (480px - 48px);
+    text-align: center;
+    margin-left: 24px;
+  }
+
+  &__close-button {
+    border: none;
+    outline: none;
+    width: 36px;
+    background-color: $gray-scale-00;
+    @include header2;
+    color: $gray-scale-50;
+    cursor: pointer;
+  }
+
+  &__content-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__content {
+    width: calc(100% - 72px);
+    height: fit-content;
+    margin: 0 auto 32px auto;
+  }
+}

@@ -1,0 +1,21 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.link-button {
+  outline: none;
+  border: none;
+  background-color: $gray-scale-00;
+  @include text-label;
+
+  &--active {
+    color: $primary-color-70;
+
+    &:hover {
+      cursor: pointer;
+      color: $primary-color-60;
+    }
+  }
+
+  &--disabled {
+    color: $gray-scale-50;
+  }
+}

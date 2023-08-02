@@ -1,0 +1,74 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+@mixin input--label {
+  display: block;
+  @include text-label;
+}
+
+@mixin error-message {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  list-style: none;
+  gap: 6px;
+
+  p {
+    display: block;
+    @include text-error;
+    margin: 0px;
+  }
+}
+
+
+.input-box-with-label {
+  width: fit-content;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    @include input--label();
+    margin-bottom: 6px;
+    left: 0;
+  }
+
+  &__error-message {
+    @include error-message();
+  }
+}
+
+.input-box-with-count {
+  width: fit-content;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__decorator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  &__label {
+    @include input--label();
+  }
+
+  &__char-container {
+    display: flex;
+    flex-direction: row;
+    @include text-caption;
+
+    p {
+      display: block;
+      margin: 0;
+    }
+  }
+
+  &__error-message {
+    @include error-message();
+  }
+}

@@ -1,0 +1,42 @@
+@use '../../../assets/styles/_global-style.scss' as *;
+
+.project-summary {
+  background-color: $gray-scale-00;
+  border-radius: 12px;
+  width: 310px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+
+  &__title {
+    @include header2;
+    margin-top: 48px;
+    width: 240px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  &__header {
+    margin-top: 40px;
+    @include header3;
+    line-height: 0%;
+    flex-shrink: 0;
+  }
+
+  &__total {
+    margin-top: 8px;
+    height: 36px;
+    color: $primary-color-70;
+    flex-shrink: 0;
+
+    @include header2;
+  }
+
+  &__button {
+    margin-top: 48px;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+  }
+}
